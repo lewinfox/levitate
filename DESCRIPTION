@@ -1,0 +1,22 @@
+Type: Package
+Package: levitate
+Title: Fuzzy String Matching
+Version: 0.1.0
+Authors@R: 
+    person(given = "Lewin",
+           family = "Appleton-Fox",
+           email = "lewin.a.f@gmail.com",
+           role = c("aut", "cre"))
+Description: Fuzzy string matching based on the Python fuzzywuzzy package.
+License: MIT + file LICENSE
+Suggests: 
+    testthat
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    glue,
+    rlang,
+    cli,
+    stringr
