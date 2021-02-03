@@ -38,8 +38,6 @@ lev_distance("cat", "rats")
 #> [1] 2
 ```
 
-#### Vectorisation
-
 The function can accept vectorised input. Where the inputs have a
 `length()` greater than 1 the results are returned as a matrix.
 
@@ -89,6 +87,18 @@ lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
 #> dog  0.0000000 0.6666667 0.3333333
 #> clog 0.0000000 0.7500000 0.5000000
 ```
+
+### `lev_partial_ratio()`
+
+*TODO*
+
+### `lev_token_sort_ratio()`
+
+*TODO*
+
+### `lev_token_set_ratio()`
+
+*TODO*
 
 ## Porting code from `fuzzywuzzy` or `fuzzywuzzyR`
 
