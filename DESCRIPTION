@@ -8,7 +8,7 @@ Authors@R:
            email = "lewin.a.f@gmail.com",
            role = c("aut", "cre"))
 Description: Fuzzy string matching based on the Python fuzzywuzzy package.
-License: MIT + file LICENSE
+License: GPL-3 + file LICENSE
 Suggests: 
     testthat
 Encoding: UTF-8
@@ -19,4 +19,5 @@ Imports:
     glue,
     rlang,
     cli,
-    stringr
+    stringr,
+    stringdist
