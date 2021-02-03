@@ -45,7 +45,9 @@ str_char_sum <- function(a, b) {
 #' str_all_substrings("hello", 3)
 #' ## [1] "hel" "ell" "llo"
 #' }
-str_all_substrings <- function(x, n) unique(substring(x, 1:(nchar(x) - n + 1), n:nchar(x)))
+str_all_substrings <- function(x, n) {
+  unique(substring(x, 1:(nchar(x) - n + 1), n:nchar(x)))
+}
 
 #' Tokenise a string
 #'
