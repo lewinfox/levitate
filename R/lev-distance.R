@@ -112,27 +112,76 @@ lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Levenshtein ratio between strings
+#' Sorted token similarity
+#'
+#' Compares strings by tokenising them, sorting the tokens alphabetically and then computing the
+#' [lev_ratio()] of the result. This means that the order of words is irrelevant which can be
+#' helpful in some circumstances.
 #'
 #' @inheritParams default-params
 #'
-#' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+#' @return A numeric scalar, vector or matrix depending on the length of the inputs.
 #'
 #' @export
+#'
+#' @seealso [lev_token_set_ratio()]
+#'
+#' @examples
+#' lev_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
+#' #> [1] 0.35
+#'
+#' # Because almost all the same words are present we will get a high match ratio.
+#' lev_token_sort_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
+#' #> [1] 0.93
 lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
+  # TODO: We should have the option to supply our own tokeniser function / regex here.
+  #       * Add an arg `tokeniser`
+  #       * It it's a character, assume regex and pass to `strsplit()`
+  #       * If it's a function, run the inputs through it.
+  #       * Write a vignette.
   a <- str_token_sort(a)
   b <- str_token_sort(b)
   res <- lev_ratio(a, b, useNames = useNames, ...)
   lev_simplify_matrix(res)
 }
 
-#' Levenshtein ratio between strings
+#' Set-based token comparison
+#'
+#' Compare stings based on shared tokens.
+#'
+#' @section Details:
+#' Similar to [lev_token_sort_ratio()] this function breaks the input down into tokens. It then
+#' identifies any common tokens between strings and creates three new strings:
+#'
+#' ```
+#' x <- {common_tokens}
+#' y <- {common_tokens}{remaining_unique_tokens_from_string_a}
+#' z <- {common_tokens}{remaining_unique_tokens_from_string_b}
+#' ```
+#'
+#' and performs three pairwise [lev_ratio()] calculations between them (`x` vs `y`, `y` vs `z` and
+#' `x` vs `z`). The highest of those three ratios is returned.
 #'
 #' @inheritParams default-params
 #'
-#' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+#' @return A numeric scalar, vector or matrix depending on the length of the inputs.
+#'
+#' @seealso [lev_token_sort_ratio()]
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' x <- "the quick brown fox jumps over the lazy dog"
+#' y <- "the lazy dog was jumped over by the quick brown fox"
+#'
+#' lev_ratio(x, y)
+#' #> [1] 0.41
+#'
+#' lev_token_set_ratio(x, y)
+#' #> [1] 0.84
+#' }
+#'
 lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
   inputs <- expand.grid(a = a, b = b)
   scores <- apply(inputs, 1, function(row) internal_lev_token_set_ratio(row[1], row[2], useNames = useNames, ...))

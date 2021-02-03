@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_token_set_ratio}
 \alias{lev_token_set_ratio}
-\title{Levenshtein ratio between strings}
+\title{Set-based token comparison}
 \usage{
 lev_token_set_ratio(a, b, useNames = TRUE, ...)
 }
@@ -17,8 +17,36 @@ lev_token_set_ratio(a, b, useNames = TRUE, ...)
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \value{
-A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+A numeric scalar, vector or matrix depending on the length of the inputs.
 }
 \description{
-Levenshtein ratio between strings
+Compare stings based on shared tokens.
+}
+\section{Details}{
+
+Similar to \code{\link[=lev_token_sort_ratio]{lev_token_sort_ratio()}} this function breaks the input down into tokens. It then
+identifies any common tokens between strings and creates three new strings:\preformatted{x <- \{common_tokens\}
+y <- \{common_tokens\}\{remaining_unique_tokens_from_string_a\}
+z <- \{common_tokens\}\{remaining_unique_tokens_from_string_b\}
+}
+
+and performs three pairwise \code{\link[=lev_ratio]{lev_ratio()}} calculations between them (\code{x} vs \code{y}, \code{y} vs \code{z} and
+\code{x} vs \code{z}). The highest of those three ratios is returned.
+}
+
+\examples{
+\dontrun{
+x <- "the quick brown fox jumps over the lazy dog"
+y <- "the lazy dog was jumped over by the quick brown fox"
+
+lev_ratio(x, y)
+#> [1] 0.41
+
+lev_token_set_ratio(x, y)
+#> [1] 0.84
+}
+
+}
+\seealso{
+\code{\link[=lev_token_sort_ratio]{lev_token_sort_ratio()}}
 }

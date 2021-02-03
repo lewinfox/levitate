@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_token_sort_ratio}
 \alias{lev_token_sort_ratio}
-\title{Levenshtein ratio between strings}
+\title{Sorted token similarity}
 \usage{
 lev_token_sort_ratio(a, b, useNames = TRUE, ...)
 }
@@ -17,8 +17,21 @@ lev_token_sort_ratio(a, b, useNames = TRUE, ...)
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \value{
-A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+A numeric scalar, vector or matrix depending on the length of the inputs.
 }
 \description{
-Levenshtein ratio between strings
+Compares strings by tokenising them, sorting the tokens alphabetically and then computing the
+\code{\link[=lev_ratio]{lev_ratio()}} of the result. This means that the order of words is irrelevant which can be
+helpful in some circumstances.
+}
+\examples{
+lev_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
+#> [1] 0.35
+
+# Because almost all the same words are present we will get a high match ratio.
+lev_token_sort_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
+#> [1] 0.93
+}
+\seealso{
+\code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}}
 }
