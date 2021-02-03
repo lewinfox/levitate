@@ -8,8 +8,8 @@
 
 \item{useNames}{Boolean. Use input vectors as row and column names?}
 
-\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdist()}} or
-\code{\link[stringdist:stringsim]{stringdist::stringsim()}}.}
+\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
+\code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \description{
 Default parameters inherited by other documentation

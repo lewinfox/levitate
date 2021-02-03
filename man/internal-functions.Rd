@@ -15,8 +15,8 @@ internal_lev_partial_ratio(a, b, useNames = TRUE, ...)
 
 \item{useNames}{Boolean. Use input vectors as row and column names?}
 
-\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdist()}} or
-\code{\link[stringdist:stringsim]{stringdist::stringsim()}}.}
+\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
+\code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \description{
 \code{\link[=lev_partial_ratio]{lev_partial_ratio()}} and \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}} are hard to vectorise in one go, so in the

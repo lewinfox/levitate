@@ -4,8 +4,8 @@
 #'
 #' @param a,b The input strings
 #' @param useNames Boolean. Use input vectors as row and column names?
-#' @param ... Additional arguments to be passed to [stringdist::stringdist()] or
-#'   [stringdist::stringsim()].
+#' @param ... Additional arguments to be passed to [stringdist::stringdistmatrix()] or
+#'   [stringdist::stringsimmatrix()].
 #'
 #' @name default-params
 #'
@@ -57,9 +57,17 @@ lev_distance <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Levenshtein ratio between strings
+#' Similarity ratio between strings
 #'
 #' @inheritParams default-params
+#'
+#' @section Details:
+#' This is a thin wrapper around [stringdist::stringsimmatrix()] and mainly exists to coerce the
+#' output into the simplest possible format (via [lev_simplify_matrix()]).
+#'
+#' The function will return the simplest possible data structure permitted by the length of the
+#' inputs `a` and `b`. This will be a scalar if `a` and `b` are length 1, a vector if either (but
+#' not both) is length > 1, and a matrix otherwise.
 #'
 #' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
 #'

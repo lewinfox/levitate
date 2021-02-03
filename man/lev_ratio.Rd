@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_ratio}
 \alias{lev_ratio}
-\title{Levenshtein ratio between strings}
+\title{Similarity ratio between strings}
 \usage{
 lev_ratio(a, b, useNames = TRUE, ...)
 }
@@ -13,12 +13,22 @@ lev_ratio(a, b, useNames = TRUE, ...)
 
 \item{useNames}{Boolean. Use input vectors as row and column names?}
 
-\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdist()}} or
-\code{\link[stringdist:stringsim]{stringdist::stringsim()}}.}
+\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
+\code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \value{
 A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
 }
 \description{
-Levenshtein ratio between strings
+Similarity ratio between strings
 }
+\section{Details}{
+
+This is a thin wrapper around \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}} and mainly exists to coerce the
+output into the simplest possible format (via \code{\link[=lev_simplify_matrix]{lev_simplify_matrix()}}).
+
+The function will return the simplest possible data structure permitted by the length of the
+inputs \code{a} and \code{b}. This will be a scalar if \code{a} and \code{b} are length 1, a vector if either (but
+not both) is length > 1, and a matrix otherwise.
+}
+
