@@ -73,7 +73,7 @@ str_all_substrings <- function(x, n) {
 #' ## [[2]]
 #' ## [1] "goodbye" "R"
 #' }
-str_tokenise <- function(x, split = "[^[:alnum:]]") {
+str_tokenise <- function(x, split = "[^[:alnum:]]+") {
   # TODO: Is this the best regex to use? In the example given above, "isn't" splits into two.
   strsplit(x, split)
 }
@@ -83,8 +83,7 @@ str_tokenise <- function(x, split = "[^[:alnum:]]") {
 #' Given an input string, tokenise it (using [str_tokenise()]), sort the tokens alphabetically and
 #' return the result as a single space-separated string.
 #'
-#' @param x The input string
-#' @param ignore_case Boolean. If `TRUE`, the input will be lowercased before processing.
+#' @param x The input string/s.
 #'
 #' @return A character vector the same length as `x` containing the sorted tokens.
 #'
@@ -96,10 +95,7 @@ str_tokenise <- function(x, split = "[^[:alnum:]]") {
 #' str_token_sort(c("R is great fun", "string manipulation is less so"))
 #' ## [1] "fun great is R"                 "is less manipulation so string"
 #' }
-str_token_sort <- function(x, ignore_case = TRUE) {
-  if (ignore_case) {
-    x <- tolower(x)
-  }
+str_token_sort <- function(x) {
   tokens <- str_tokenise(x)
   sorted_tokens <- lapply(tokens, sort)
   sapply(sorted_tokens, paste, collapse = " ")

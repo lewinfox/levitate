@@ -4,12 +4,10 @@
 \alias{str_token_sort}
 \title{Tokenise and sort a string}
 \usage{
-str_token_sort(x, ignore_case = TRUE)
+str_token_sort(x)
 }
 \arguments{
-\item{x}{The input string}
-
-\item{ignore_case}{Boolean. If \code{TRUE}, the input will be lowercased before processing.}
+\item{x}{The input string/s.}
 }
 \value{
 A character vector the same length as \code{x} containing the sorted tokens.

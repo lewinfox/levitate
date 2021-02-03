@@ -4,7 +4,7 @@
 \alias{str_tokenise}
 \title{Tokenise a string}
 \usage{
-str_tokenise(x, split = "[^[:alnum:]]")
+str_tokenise(x, split = "[^[:alnum:]]+")
 }
 \arguments{
 \item{x}{The input string.}
