@@ -11,6 +11,8 @@ library(levitate)
 
 # Fuzzy string matching for R
 
+<!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
+
 `levitate` is based on the Python [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) package for
 fuzzy string matching. An R port of this already exists, but unlike 
 [fuzzywuzzyR](https://github.com/mlampros/fuzzywuzzyR), `levitate` is written entirely in R with no
