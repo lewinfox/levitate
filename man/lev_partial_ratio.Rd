@@ -30,9 +30,9 @@ If string \code{a} has length \code{len_a} and is shorter than string \code{b}, 
 
 \examples{
 lev_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
-## [1] 0.4358974
+#> [1] 0.4358974
 
 # Here the two "Bruce Springsteen" strings will match perfectly.
 lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
-## [1] 1
+#> [1] 1
 }

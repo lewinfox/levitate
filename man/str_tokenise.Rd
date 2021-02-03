@@ -21,15 +21,15 @@ Splits an input string into tokens. A wrapper for \code{\link[=strsplit]{strspli
 \examples{
 \dontrun{
 str_tokenise("this is nice isn't it")
-## [[1]]
-## [1] "this" "is"   "nice" "isn"  "t"    "it"
+#> [[1]]
+#> [1] "this" "is"   "nice" "isn"  "t"    "it"
 
 str_tokenise(c("hello R", "goodbye R"))
 
-## [[1]]
-## [1] "hello" "R"
+#> [[1]]
+#> [1] "hello" "R"
 
-## [[2]]
-## [1] "goodbye" "R"
+#> [[2]]
+#> [1] "goodbye" "R"
 }
 }

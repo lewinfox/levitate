@@ -42,17 +42,17 @@ information.
 
 \examples{
 lev_distance("Bilbo", "Frodo")
-## [1] 4
+#> [1] 4
 
 lev_distance("Bilbo", c("Frodo", "Merry"))
-## Frodo Merry
-##     4     5
+#> Frodo Merry
+#>     4     5
 
 lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
-## [1] 4 5
+#> [1] 4 5
 
 lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-##         Frodo Merry
-## Bilbo       4     5
-## Gandalf     6     7
+#>         Frodo Merry
+#> Bilbo       4     5
+#> Gandalf     6     7
 }

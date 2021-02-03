@@ -20,6 +20,6 @@ Find all substrings of a given length
 \examples{
 \dontrun{
 str_all_substrings("hello", 3)
-## [1] "hel" "ell" "llo"
+#> [1] "hel" "ell" "llo"
 }
 }
