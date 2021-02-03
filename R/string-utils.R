@@ -1,38 +1,3 @@
-#' Sum `nchar()`
-#'
-#' Vectorised Levenshtein ratio calculations require us to add the number of characters in two
-#' strings together. This function is vectorised over `a` and `b`. Unless both inputs are scalar the
-#' result will be a matrix to simplify calculations in [lev_ratio()].
-#'
-#' @param a,b The input strings. Vectorised input is accepted.
-#'
-#' @return The result of `nchar(a) + nchar(b)` for all combinations of the elements of `a` and `b`.
-#'   If `a` and `b` are length 1 the result is a scalar (i.e. a length 1 vector) otherwise a matrix.
-#'
-#' @examples
-#' \dontrun{
-#' str_char_sum("cat", "mouse")
-#' ## [1] 8
-#'
-#' str_char_sum(c("cat", "cats"), "mouse")
-#' ##      mouse
-#' ## cat      8
-#' ## cats     9
-#'
-#' str_char_sum(c("cat", "cats"), c("mouse", "mice"))
-#' ##      mouse mice
-#' ## cat      8    7
-#' ## cats     9    8
-#' }
-str_char_sum <- function(a, b) {
-  x <- expand.grid(nchar(a), nchar(b))
-  res <- matrix(x[, 1] + x[, 2], nrow = length(a), ncol = length(b), dimnames = list(a, b))
-  if (nrow(res) == 1 && ncol(res) == 1) {
-    return(as.vector(res))
-  }
-  res
-}
-
 #' Find all substrings of a given length
 #'
 #' @param x The input string.
