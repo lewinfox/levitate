@@ -10,7 +10,7 @@ output: github_document
 
 <!-- badges: start -->
 <!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
-[![Travis build status](https://travis-ci.com/lewinfox/levitate.svg?branch=master)](https://travis-ci.com/lewinfox/levitate)
+[![Travis build status](https://travis-ci.com/lewinfox/levitate.svg?branch=main)](https://travis-ci.com/lewinfox/levitate)
 <!-- badges: end -->
 
 `levitate` is based on the Python [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) package for
