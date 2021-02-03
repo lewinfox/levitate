@@ -73,9 +73,10 @@ lev_distance <- function(a, b, useNames = TRUE, ...) {
 #'
 #' @export
 lev_ratio <- function(a, b, useNames = TRUE, ...) {
-  # TODO: Where the arguments are different lengths we get a warning from `pdist()` which is used by
-  #       `stringdist::stringsimmatrix()`. Suppressing the warning is not ideal - fix this.
-  if (length(a) != length(b)) {
+  # TODO: Where the arguments are different lengths that are not a multiple of each other we get a
+  #       warning about fractional argument recycling from `pdist()` which is used by
+  #       `stringdist::stringsimmatrix()`. Suppressing the warning like this is bad practice!
+  if (length(a) %% length(b) != 0) {
     res <- suppressWarnings(stringdist::stringsimmatrix(a = a, b = b, useNames = useNames, ...))
   } else {
     res <- stringdist::stringsimmatrix(a = a, b = b, useNames = useNames, ...)

@@ -206,3 +206,9 @@ test_that("`lev_token_set_ratio()` returns the correct shape output", {
   expect_dimnames(lev_token_set_ratio(l3, l4), l3, l4)
   expect_dimnames(lev_token_set_ratio(l4, l2), l4, l2)
 })
+
+# When given inputs of different lengths that are not a multiple of each other lev_dist() triggers
+# a warning from `pmax()` about partial recycling. This is annoying and should be fixed if possible.
+test_that("`lev_ratio()` does not warn about fractional argument recycling", {
+  expect_warning(lev_ratio(c("a", "b"), c("a", "b", "c")), NA)
+})
