@@ -20,7 +20,7 @@ internal_lev_partial_ratio(a, b, useNames = TRUE, ...)
 }
 \description{
 \code{\link[=lev_partial_ratio]{lev_partial_ratio()}} and \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}} are hard to vectorise in one go, so in the
-interests of lazy thikning these "internal" versions contain the logic to operate on
+interests of lazy thinking these "internal" versions contain the logic to operate on
 single-length inputs, and the calling functions just \code{\link[=apply]{apply()}} them as needed.
 }
 \section{Functions}{

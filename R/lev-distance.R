@@ -195,13 +195,13 @@ lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
 # ---- Internal functions ----
 #
 # `lev_partial_ratio()` and `lev_token_set_ratio()` are hard to vectorise in one go, so in the
-# interests of lazy thikning these "internal" versions contain the logic to operate on single-length
+# interests of lazy thinking these "internal" versions contain the logic to operate on single-length
 # inputs, and the calling functions just `apply()` them as needed.
 
 #' Internal functions
 #'
 #' [lev_partial_ratio()] and [lev_token_set_ratio()] are hard to vectorise in one go, so in the
-#' interests of lazy thikning these "internal" versions contain the logic to operate on
+#' interests of lazy thinking these "internal" versions contain the logic to operate on
 #' single-length inputs, and the calling functions just [apply()] them as needed.
 #'
 #' @param a,b The input strings. For these "internal" functions these must be length 1
