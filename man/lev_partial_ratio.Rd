@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_partial_ratio}
 \alias{lev_partial_ratio}
-\title{Levenshtein ratio between strings}
+\title{Partial string ratio}
 \usage{
 lev_partial_ratio(a, b, useNames = TRUE, ...)
 }
@@ -17,8 +17,22 @@ lev_partial_ratio(a, b, useNames = TRUE, ...)
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \value{
-A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+A numeric scalar, vector or matrix depending on the length of the inputs.
 }
 \description{
-Levenshtein ratio between strings
+Find the best \code{lev_ratio()} between substrings.
+}
+\section{Details}{
+
+If string \code{a} has length \code{len_a} and is shorter than string \code{b}, this function finds the highest
+\code{\link[=lev_ratio]{lev_ratio()}} of all the \code{len_a}-long substrings of \code{b} (and vice versa).
+}
+
+\examples{
+lev_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
+## [1] 0.4358974
+
+# Here the two "Bruce Springsteen" strings will match perfectly.
+lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
+## [1] 1
 }

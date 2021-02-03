@@ -84,13 +84,27 @@ lev_ratio <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Levenshtein ratio between strings
+#' Partial string ratio
+#'
+#' Find the best `lev_ratio()` between substrings.
 #'
 #' @inheritParams default-params
 #'
-#' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+#' @section Details:
+#' If string `a` has length `len_a` and is shorter than string `b`, this function finds the highest
+#' [lev_ratio()] of all the `len_a`-long substrings of `b` (and vice versa).
+#'
+#' @return A numeric scalar, vector or matrix depending on the length of the inputs.
 #'
 #' @export
+#'
+#' @examples
+#' lev_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
+#' ## [1] 0.4358974
+#'
+#' # Here the two "Bruce Springsteen" strings will match perfectly.
+#' lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
+#' ## [1] 1
 lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
   inputs <- expand.grid(a = a, b = b)
   scores <- apply(inputs, 1, function(row) internal_lev_partial_ratio(row[1], row[2], useNames = useNames, ...))
