@@ -37,13 +37,16 @@ and performs three pairwise \code{\link[=lev_ratio]{lev_ratio()}} calculations b
 \examples{
 \dontrun{
 x <- "the quick brown fox jumps over the lazy dog"
-y <- "the lazy dog was jumped over by the quick brown fox"
+y <- "my lazy dog was jumped over by a quick brown fox"
 
 lev_ratio(x, y)
-#> [1] 0.41
+#> [1] 0.29
+
+lev_token_sort_ratio(x, y)
+#> [1] 0.64
 
 lev_token_set_ratio(x, y)
-#> [1] 0.84
+#> [1] 0.74
 }
 
 }
