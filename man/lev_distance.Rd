@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_distance}
 \alias{lev_distance}
-\title{Edit distance between strings}
+\title{Distance between strings}
 \usage{
 lev_distance(a, b, useNames = TRUE, ...)
 }
@@ -20,6 +20,39 @@ lev_distance(a, b, useNames = TRUE, ...)
 A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
 }
 \description{
-Refer to \href{https://en.wikipedia.org/wiki/Levenshtein_distance}{Levenshtein distance} on
-Wikipedia for more details.
+Uses \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} to compute a range of
+\link[stringdist:stringdist-metrics]{string distance metrics}.
+}
+\section{Details}{
+
+This is a thin wrapper around \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} and mainly exists to coerce the
+output into the simplest possible format (via \code{\link[=lev_simplify_matrix]{lev_simplify_matrix()}}).
+
+The function will return the simplest possible data structure permitted by the length of the
+inputs \code{a} and \code{b}. This will be a scalar if \code{a} and \code{b} are length 1, a vector if either (but
+not both) is length > 1, and a matrix otherwise.
+}
+
+\section{Other options}{
+
+In addition to \code{useNames} \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} provides a range of options to control
+the matching, which can be passed using \code{...}. Refer to the \code{stringdist} documentation for more
+information.
+}
+
+\examples{
+lev_distance("Bilbo", "Frodo")
+## [1] 4
+
+lev_distance("Bilbo", c("Frodo", "Merry"))
+## Frodo Merry
+##     4     5
+
+lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
+## [1] 4 5
+
+lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
+##         Frodo Merry
+## Bilbo       4     5
+## Gandalf     6     7
 }

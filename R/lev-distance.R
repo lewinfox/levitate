@@ -13,16 +13,45 @@
 #'   functions and the additional options available.
 NULL
 
-#' Edit distance between strings
+#' Distance between strings
 #'
-#' Refer to [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) on
-#' Wikipedia for more details.
+#' Uses [stringdist::stringdistmatrix()] to compute a range of
+#' [string distance metrics][stringdist::stringdist-metrics].
+#'
+#' @section Details:
+#' This is a thin wrapper around [stringdist::stringdistmatrix()] and mainly exists to coerce the
+#' output into the simplest possible format (via [lev_simplify_matrix()]).
+#'
+#' The function will return the simplest possible data structure permitted by the length of the
+#' inputs `a` and `b`. This will be a scalar if `a` and `b` are length 1, a vector if either (but
+#' not both) is length > 1, and a matrix otherwise.
+#'
+#' @section Other options:
+#' In addition to `useNames` [stringdist::stringdistmatrix()] provides a range of options to control
+#' the matching, which can be passed using `...`. Refer to the `stringdist` documentation for more
+#' information.
 #'
 #' @inheritParams default-params
 #'
 #' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
 #'
 #' @export
+#'
+#' @examples
+#' lev_distance("Bilbo", "Frodo")
+#' ## [1] 4
+#'
+#' lev_distance("Bilbo", c("Frodo", "Merry"))
+#' ## Frodo Merry
+#' ##     4     5
+#'
+#' lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
+#' ## [1] 4 5
+#'
+#' lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
+#' ##         Frodo Merry
+#' ## Bilbo       4     5
+#' ## Gandalf     6     7
 lev_distance <- function(a, b, useNames = TRUE, ...) {
   res <- stringdist::stringdistmatrix(a, b, useNames = useNames, ...)
   lev_simplify_matrix(res)
