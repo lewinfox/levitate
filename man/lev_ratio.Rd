@@ -4,21 +4,17 @@
 \alias{lev_ratio}
 \title{Levenshtein ratio between strings}
 \usage{
-lev_ratio(a, b, preprocessor = preprocessor_default(), pairwise = FALSE)
+lev_ratio(a, b, useNames = TRUE, ...)
 }
 \arguments{
 \item{a}{The input strings}
 
 \item{b}{The input strings}
 
-\item{preprocessor}{Function or \code{NULL}. If a function is passed, each input will be passed
-through it before analysis starts. Typical use cases are removing punctuation and standardising
-case. See \code{vignette("preprocessors", package = "levitate")} for more details.}
+\item{useNames}{Boolean. Use input vectors as row and column names?}
 
-\item{pairwise}{Boolean. If \code{TRUE} the function will try and compare the strings pairwise (i.e.
-\code{a[1]} with \code{b[1]}, \code{a[2]} with \code{b[2]}, etc.) and return a vector of the results rather than
-comparing every input with every output. For this to work, \code{a} \code{b} must be the same length or
-one of them must be length 1.}
+\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdist()}} or
+\code{\link[stringdist:stringsim]{stringdist::stringsim()}}.}
 }
 \value{
 A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".

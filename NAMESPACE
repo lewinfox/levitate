@@ -2,7 +2,6 @@
 
 export(lev_distance)
 export(lev_partial_ratio)
-export(lev_partial_ratio_single_string)
 export(lev_ratio)
 export(lev_token_set_ratio)
 export(lev_token_sort_ratio)

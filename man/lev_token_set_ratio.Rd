@@ -4,16 +4,17 @@
 \alias{lev_token_set_ratio}
 \title{Levenshtein ratio between strings}
 \usage{
-lev_token_set_ratio(a, b, preprocessor = preprocessor_default())
+lev_token_set_ratio(a, b, useNames = TRUE, ...)
 }
 \arguments{
 \item{a}{The input strings}
 
 \item{b}{The input strings}
 
-\item{preprocessor}{Function or \code{NULL}. If a function is passed, each input will be passed
-through it before analysis starts. Typical use cases are removing punctuation and standardising
-case. See \code{vignette("preprocessors", package = "levitate")} for more details.}
+\item{useNames}{Boolean. Use input vectors as row and column names?}
+
+\item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdist()}} or
+\code{\link[stringdist:stringsim]{stringdist::stringsim()}}.}
 }
 \value{
 A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
