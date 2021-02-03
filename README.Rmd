@@ -11,7 +11,10 @@ library(levitate)
 
 # Fuzzy string matching for R
 
+<!-- badges: start -->
 <!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
+[![Travis build status](https://travis-ci.com/lewinfox/levitate.svg?branch=master)](https://travis-ci.com/lewinfox/levitate)
+<!-- badges: end -->
 
 `levitate` is based on the Python [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) package for
 fuzzy string matching. An R port of this already exists, but unlike 
