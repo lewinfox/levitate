@@ -17,7 +17,7 @@ lev_ratio(a, b, useNames = TRUE, ...)
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
 \value{
-A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+A numeric scalar, vector or matrix depending on the length of the inputs.
 }
 \description{
 Similarity ratio between strings

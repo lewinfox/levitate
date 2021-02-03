@@ -69,7 +69,7 @@ lev_distance <- function(a, b, useNames = TRUE, ...) {
 #' inputs `a` and `b`. This will be a scalar if `a` and `b` are length 1, a vector if either (but
 #' not both) is length > 1, and a matrix otherwise.
 #'
-#' @return A numeric scalar, vector or matrix depending on the length of the inputs. See "Details".
+#' @return A numeric scalar, vector or matrix depending on the length of the inputs.
 #'
 #' @export
 lev_ratio <- function(a, b, useNames = TRUE, ...) {
