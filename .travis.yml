@@ -3,6 +3,9 @@
 language: R
 cache: packages
 
+before_install:
+  - sudo apt-get -y install libharfbuzz-dev libfribidi-dev
+
 after_success:
   - Rscript -e 'pkgdown::build_site()'
 
