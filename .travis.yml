@@ -1,8 +1,12 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
+# This article was useful for the initial setup:
+#   https://www.datacamp.com/community/tutorials/cd-package-docs-pkgdown-travis
+
 language: R
 cache: packages
 
+# These are not part of the default Travis VM and need to be installed
 before_install:
   - sudo apt-get -y install libharfbuzz-dev libfribidi-dev
 
