@@ -47,7 +47,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/lewinfox/levitate/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -65,7 +72,9 @@
 <!-- badges: start -->
 <!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
 
+<p><strong>This package is a work in progress - details may change</strong></p>
 <p><code>levitate</code> is based on the Python <a href="https://github.com/seatgeek/fuzzywuzzy">fuzzywuzzy</a> package for fuzzy string matching. An R port of this already exists, but unlike <a href="https://github.com/mlampros/fuzzywuzzyR">fuzzywuzzyR</a>, <code>levitate</code> is written entirely in R with no external dependencies on <code>reticulate</code> or Python. It also offers a couple of extra bells and whistles in the form of vectorised functions.</p>
+<p>View the docs at <a href="https://lewinfox.github.io/levitate/" class="uri">https://lewinfox.github.io/levitate/</a>.</p>
 <div id="why-levitate" class="section level2">
 <h2 class="hasAnchor">
 <a href="#why-levitate" class="anchor"></a>Why “<code>levitate</code>”?</h2>
@@ -131,7 +140,7 @@
 <h3 class="hasAnchor">
 <a href="#lev_partial_ratio" class="anchor"></a><code>lev_partial_ratio()</code>
 </h3>
-<p>If <code>a</code> and <code>a</code> are different lengths, this function compares all the substrings of the longer string that are the same length as the shorter string and returns the highest <code><a href="reference/lev_ratio.html">lev_ratio()</a></code> of all of them. E.g. when comparing <code>"actor"</code> and <code>"tractor"</code> we would compare <code>"actor"</code> with <code>"tract"</code>, <code>"racto"</code> and <code>"actor"</code> and return the highest score (in this case 1).</p>
+<p>If <code>a</code> and <code>b</code> are different lengths, this function compares all the substrings of the longer string that are the same length as the shorter string and returns the highest <code><a href="reference/lev_ratio.html">lev_ratio()</a></code> of all of them. E.g. when comparing <code>"actor"</code> and <code>"tractor"</code> we would compare <code>"actor"</code> with <code>"tract"</code>, <code>"racto"</code> and <code>"actor"</code> and return the highest score (in this case 1).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/lev_partial_ratio.html">lev_partial_ratio</a></span><span class="op">(</span><span class="st">"actor"</span>, <span class="st">"tractor"</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span>
@@ -185,13 +194,22 @@
 <h2 class="hasAnchor">
 <a href="#porting-code-from-fuzzywuzzy-or-fuzzywuzzyr" class="anchor"></a>Porting code from <code>fuzzywuzzy</code> or <code>fuzzywuzzyR</code>
 </h2>
-<p>The underlying algorithms differ between <code>levitate</code> and <code>fuzzywuzzy</code>, not least because <a href="(https://github.com/markvanderloo/stringdist)"><code>stringdist</code></a> offers several possible similarity measures. Be careful if you are porting code that relies on hard-coded or learned cutoffs for similarity measures.</p>
+<p>Results differ between <code>levitate</code> and <code>fuzzywuzzy</code>, not least because <a href="https://github.com/markvanderloo/stringdist"><code>stringdist</code></a> offers several possible similarity measures. Be careful if you are porting code that relies on hard-coded or learned cutoffs for similarity measures.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2>Links</h2>
+<ul class="list-unstyled">
+<li>Browse source code at <br><a href="https://github.com/lewinfox/levitate/">https://​github.com/​lewinfox/​levitate/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/lewinfox/levitate/issues">https://​github.com/​lewinfox/​levitate/​issues</a>
+</li>
+</ul>
+</div>
+<div class="license">
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
