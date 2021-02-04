@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_token_sort_ratio}
 \alias{lev_token_sort_ratio}
-\title{Sorted token similarity}
+\title{Ordered token matching}
 \usage{
 lev_token_sort_ratio(a, b, useNames = TRUE, ...)
 }
@@ -25,12 +25,14 @@ Compares strings by tokenising them, sorting the tokens alphabetically and then 
 helpful in some circumstances.
 }
 \examples{
-lev_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
-#> [1] 0.35
+x <- "Episode IV - Star Wars: A New Hope"
+y <- "Star Wars Episode IV - New Hope"
 
-# Because almost all the same words are present we will get a high match ratio.
-lev_token_sort_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
-#> [1] 0.93
+# Because the order of words is different the simple approach gives a low match ratio.
+lev_ratio(x, y)
+
+# The sorted token approach ignores word order.
+lev_token_sort_ratio(x, y)
 }
 \seealso{
 \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}}

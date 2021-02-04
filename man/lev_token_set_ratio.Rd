@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_token_set_ratio}
 \alias{lev_token_set_ratio}
-\title{Set-based token comparison}
+\title{Matching based on common tokens}
 \usage{
 lev_token_set_ratio(a, b, useNames = TRUE, ...)
 }
@@ -35,20 +35,14 @@ and performs three pairwise \code{\link[=lev_ratio]{lev_ratio()}} calculations b
 }
 
 \examples{
-\dontrun{
 x <- "the quick brown fox jumps over the lazy dog"
 y <- "my lazy dog was jumped over by a quick brown fox"
 
 lev_ratio(x, y)
-#> [1] 0.29
 
 lev_token_sort_ratio(x, y)
-#> [1] 0.64
 
 lev_token_set_ratio(x, y)
-#> [1] 0.74
-}
-
 }
 \seealso{
 \code{\link[=lev_token_sort_ratio]{lev_token_sort_ratio()}}

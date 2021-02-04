@@ -7,7 +7,7 @@
 str_all_substrings(x, n)
 }
 \arguments{
-\item{x}{The input string.}
+\item{x}{The input string. Non-character inputs will be coerced with \code{\link[=as.character]{as.character()}}.}
 
 \item{n}{The length of the desired substrings.}
 }

@@ -75,16 +75,56 @@ lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
 ```
 
 ### `lev_partial_ratio()`
-_TODO_
+If `a` and `a` are different lengths, this function compares all the substrings of the longer string
+that are the same length as the shorter string and returns the highest `lev_ratio()` of all of them.
+E.g. when comparing `"actor"` and `"tractor"` we would compare `"actor"` with `"tract"`, `"racto"`
+and `"actor"` and return the highest score (in this case 1).
+
+```{r}
+lev_partial_ratio("actor", "tractor")
+
+# What's actually happening is the max() of this result is being returned
+lev_ratio("actor", c("tract", "racto", "actor"))
+```
 
 ### `lev_token_sort_ratio()`
-_TODO_
+The inputs are tokenised and the tokens are sorted alphabetically, then the resulting strings are
+compared.
+```{r}
+x <- "Episode IV - Star Wars: A New Hope"
+y <- "Star Wars Episode IV - New Hope"
+
+# Because the order of words is different the simple approach gives a low match ratio.
+lev_ratio(x, y)
+
+# The sorted token approach ignores word order.
+lev_token_sort_ratio(x, y)
+```
 
 ### `lev_token_set_ratio()`
-_TODO_
+Similar to `lev_token_sort_ratio()` this function breaks the input down into tokens. It then 
+identifies any common tokens between strings and creates three new strings:
+
+```
+x <- {common_tokens}
+y <- {common_tokens}{remaining_unique_tokens_from_string_a}
+z <- {common_tokens}{remaining_unique_tokens_from_string_b}
+```
+and performs three pairwise `lev_ratio()` calculations between them (`x` vs `y`, `y` vs `z` and `x`
+vs `z`). The highest of those three ratios is returned.
+```{r}
+x <- "the quick brown fox jumps over the lazy dog"
+y <- "my lazy dog was jumped over by a quick brown fox"
+
+lev_ratio(x, y)
+
+lev_token_sort_ratio(x, y)
+
+lev_token_set_ratio(x, y)
+```
 
 ## Porting code from `fuzzywuzzy` or `fuzzywuzzyR`
 The underlying algorithms differ between `levitate` and `fuzzywuzzy`, not least because
-[`stringdist`]((https://github.com/markvanderloo/stringdist)) offers several possible similarity
+[`stringdist`](https://github.com/markvanderloo/stringdist) offers several possible similarity
 measures. Be careful if you are porting code that relies on hard-coded or learned cutoffs for
 similarity measures.

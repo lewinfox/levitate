@@ -98,15 +98,68 @@ lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
 
 ### `lev_partial_ratio()`
 
-*TODO*
+If `a` and `a` are different lengths, this function compares all the
+substrings of the longer string that are the same length as the shorter
+string and returns the highest `lev_ratio()` of all of them. E.g. when
+comparing `"actor"` and `"tractor"` we would compare `"actor"` with
+`"tract"`, `"racto"` and `"actor"` and return the highest score (in this
+case 1).
+
+``` r
+lev_partial_ratio("actor", "tractor")
+#> [1] 1
+
+# What's actually happening is the max() of this result is being returned
+lev_ratio("actor", c("tract", "racto", "actor"))
+#> tract racto actor 
+#>   0.2   0.6   1.0
+```
 
 ### `lev_token_sort_ratio()`
 
-*TODO*
+The inputs are tokenised and the tokens are sorted alphabetically, then
+the resulting strings are compared.
+
+``` r
+x <- "Episode IV - Star Wars: A New Hope"
+y <- "Star Wars Episode IV - New Hope"
+
+# Because the order of words is different the simple approach gives a low match ratio.
+lev_ratio(x, y)
+#> [1] 0.3529412
+
+# The sorted token approach ignores word order.
+lev_token_sort_ratio(x, y)
+#> [1] 0.9117647
+```
 
 ### `lev_token_set_ratio()`
 
-*TODO*
+Similar to `lev_token_sort_ratio()` this function breaks the input down
+into tokens. It then identifies any common tokens between strings and
+creates three new strings:
+
+    x <- {common_tokens}
+    y <- {common_tokens}{remaining_unique_tokens_from_string_a}
+    z <- {common_tokens}{remaining_unique_tokens_from_string_b}
+
+and performs three pairwise `lev_ratio()` calculations between them (`x`
+vs `y`, `y` vs `z` and `x` vs `z`). The highest of those three ratios is
+returned.
+
+``` r
+x <- "the quick brown fox jumps over the lazy dog"
+y <- "my lazy dog was jumped over by a quick brown fox"
+
+lev_ratio(x, y)
+#> [1] 0.2916667
+
+lev_token_sort_ratio(x, y)
+#> [1] 0.6458333
+
+lev_token_set_ratio(x, y)
+#> [1] 0.7435897
+```
 
 ## Porting code from `fuzzywuzzy` or `fuzzywuzzyR`
 

@@ -7,7 +7,7 @@
 str_tokenise(x, split = "[^[:alnum:]]+")
 }
 \arguments{
-\item{x}{The input string.}
+\item{x}{The input string. Non-character inputs will be coerced with \code{\link[=as.character]{as.character()}}.}
 
 \item{split}{The regular expression to split on. See \code{\link[=strsplit]{strsplit()}}.}
 }

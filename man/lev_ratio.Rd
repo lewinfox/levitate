@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_ratio}
 \alias{lev_ratio}
-\title{Similarity ratio between strings}
+\title{String similarity ratio}
 \usage{
 lev_ratio(a, b, useNames = TRUE, ...)
 }
@@ -20,7 +20,7 @@ lev_ratio(a, b, useNames = TRUE, ...)
 A numeric scalar, vector or matrix depending on the length of the inputs.
 }
 \description{
-Similarity ratio between strings
+String similarity ratio
 }
 \section{Details}{
 
@@ -32,3 +32,12 @@ inputs \code{a} and \code{b}. This will be a scalar if \code{a} and \code{b} are
 not both) is length > 1, and a matrix otherwise.
 }
 
+\examples{
+lev_ratio("Bilbo", "Frodo")
+
+lev_ratio("Bilbo", c("Frodo", "Merry"))
+
+lev_ratio("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
+
+lev_ratio(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
+}

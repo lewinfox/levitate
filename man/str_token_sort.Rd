@@ -7,7 +7,7 @@
 str_token_sort(x)
 }
 \arguments{
-\item{x}{The input string/s.}
+\item{x}{The input string. Non-character inputs will be coerced with \code{\link[=as.character]{as.character()}}.}
 }
 \value{
 A character vector the same length as \code{x} containing the sorted tokens.

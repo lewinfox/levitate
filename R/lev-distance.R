@@ -13,7 +13,7 @@
 #'   functions and the additional options available.
 NULL
 
-#' Distance between strings
+#' String distance metrics
 #'
 #' Uses [stringdist::stringdistmatrix()] to compute a range of
 #' [string distance metrics][stringdist::stringdist-metrics].
@@ -39,25 +39,18 @@ NULL
 #'
 #' @examples
 #' lev_distance("Bilbo", "Frodo")
-#' #> [1] 4
 #'
 #' lev_distance("Bilbo", c("Frodo", "Merry"))
-#' #> Frodo Merry
-#' #>     4     5
 #'
 #' lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
-#' #> [1] 4 5
 #'
 #' lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-#' #>         Frodo Merry
-#' #> Bilbo       4     5
-#' #> Gandalf     6     7
 lev_distance <- function(a, b, useNames = TRUE, ...) {
   res <- stringdist::stringdistmatrix(a, b, useNames = useNames, ...)
   lev_simplify_matrix(res)
 }
 
-#' Similarity ratio between strings
+#' String similarity ratio
 #'
 #' @inheritParams default-params
 #'
@@ -72,6 +65,15 @@ lev_distance <- function(a, b, useNames = TRUE, ...) {
 #' @return A numeric scalar, vector or matrix depending on the length of the inputs.
 #'
 #' @export
+#'
+#' @examples
+#' lev_ratio("Bilbo", "Frodo")
+#'
+#' lev_ratio("Bilbo", c("Frodo", "Merry"))
+#'
+#' lev_ratio("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
+#'
+#' lev_ratio(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
 lev_ratio <- function(a, b, useNames = TRUE, ...) {
   # TODO: Where the arguments are different lengths that are not a multiple of each other we get a
   #       warning about fractional argument recycling from `pdist()` which is used by
@@ -84,7 +86,7 @@ lev_ratio <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Partial string ratio
+#' Ratio of the best-matching substring
 #'
 #' Find the best `lev_ratio()` between substrings.
 #'
@@ -112,7 +114,7 @@ lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Sorted token similarity
+#' Ordered token matching
 #'
 #' Compares strings by tokenising them, sorting the tokens alphabetically and then computing the
 #' [lev_ratio()] of the result. This means that the order of words is irrelevant which can be
@@ -127,12 +129,14 @@ lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
 #' @seealso [lev_token_set_ratio()]
 #'
 #' @examples
-#' lev_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
-#' #> [1] 0.35
+#' x <- "Episode IV - Star Wars: A New Hope"
+#' y <- "Star Wars Episode IV - New Hope"
 #'
-#' # Because almost all the same words are present we will get a high match ratio.
-#' lev_token_sort_ratio("Episode IV - Star Wars: A New Hope", "Star Wars Episode IV - New Hope")
-#' #> [1] 0.93
+#' # Because the order of words is different the simple approach gives a low match ratio.
+#' lev_ratio(x, y)
+#'
+#' # The sorted token approach ignores word order.
+#' lev_token_sort_ratio(x, y)
 lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
   # TODO: We should have the option to supply our own tokeniser function / regex here.
   #       * Add an arg `tokeniser`
@@ -145,7 +149,7 @@ lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
   lev_simplify_matrix(res)
 }
 
-#' Set-based token comparison
+#' Matching based on common tokens
 #'
 #' Compare stings based on shared tokens.
 #'
@@ -171,20 +175,14 @@ lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' x <- "the quick brown fox jumps over the lazy dog"
 #' y <- "my lazy dog was jumped over by a quick brown fox"
 #'
 #' lev_ratio(x, y)
-#' #> [1] 0.29
 #'
 #' lev_token_sort_ratio(x, y)
-#' #> [1] 0.64
 #'
 #' lev_token_set_ratio(x, y)
-#' #> [1] 0.74
-#' }
-#'
 lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
   inputs <- expand.grid(a = a, b = b)
   scores <- apply(inputs, 1, function(row) internal_lev_token_set_ratio(row[1], row[2], useNames = useNames, ...))

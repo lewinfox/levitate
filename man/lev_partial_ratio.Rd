@@ -2,7 +2,7 @@
 % Please edit documentation in R/lev-distance.R
 \name{lev_partial_ratio}
 \alias{lev_partial_ratio}
-\title{Partial string ratio}
+\title{Ratio of the best-matching substring}
 \usage{
 lev_partial_ratio(a, b, useNames = TRUE, ...)
 }
