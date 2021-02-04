@@ -1,0 +1,19 @@
+reference:
+- title: "String distance"
+  desc: >
+    `levitate` is powered by the [`stringdist`](https://github.com/markvanderloo/stringdist)
+    package, which offers a number of string distance measures.
+- contents:
+  - lev_distance
+- title: "String similarity ratio"
+  desc: >
+    Similarity ratios are friendlier than distance measures when trying to rank strings by
+    similarity. Identical strings will have a ratio of 1.
+- subtitle: "Simple ratios"
+- contents:
+  - lev_ratio
+  - lev_partial_ratio
+- subtitle: "Token-based ratios"
+- contents:
+  - lev_token_set_ratio
+  - lev_token_sort_ratio
