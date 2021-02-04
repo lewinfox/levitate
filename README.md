@@ -19,6 +19,8 @@ written entirely in R with no external dependencies on `reticulate` or
 Python. It also offers a couple of extra bells and whistles in the form
 of vectorised functions.
 
+View the docs at <https://lewinfox.github.io/levitate/>.
+
 ## Why “`levitate`”?
 
 A common measure of string similarity is the [**Lev**enshtein
@@ -98,7 +100,7 @@ lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
 
 ### `lev_partial_ratio()`
 
-If `a` and `a` are different lengths, this function compares all the
+If `a` and `b` are different lengths, this function compares all the
 substrings of the longer string that are the same length as the shorter
 string and returns the highest `lev_ratio()` of all of them. E.g. when
 comparing `"actor"` and `"tractor"` we would compare `"actor"` with
@@ -163,8 +165,7 @@ lev_token_set_ratio(x, y)
 
 ## Porting code from `fuzzywuzzy` or `fuzzywuzzyR`
 
-The underlying algorithms differ between `levitate` and `fuzzywuzzy`,
-not least because
-[`stringdist`](\(https://github.com/markvanderloo/stringdist\)) offers
+Results differ between `levitate` and `fuzzywuzzy`, not least because
+[`stringdist`](https://github.com/markvanderloo/stringdist) offers
 several possible similarity measures. Be careful if you are porting code
 that relies on hard-coded or learned cutoffs for similarity measures.
