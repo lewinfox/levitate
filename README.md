@@ -11,6 +11,8 @@
 status](https://travis-ci.com/lewinfox/levitate.svg?branch=main)](https://travis-ci.com/lewinfox/levitate)
 <!-- badges: end -->
 
+**This package is a work in progress - details may change**
+
 `levitate` is based on the Python
 [fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) package for fuzzy
 string matching. An R port of this already exists, but unlike
