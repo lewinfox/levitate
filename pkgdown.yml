@@ -2,5 +2,8 @@ pandoc: '2.2'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-02-04T09:16Z
+last_built: 2021-02-13T01:35Z
+urls:
+  reference: https://github.com/lewinfox/levitate/reference
+  article: https://github.com/lewinfox/levitate/articles
 
