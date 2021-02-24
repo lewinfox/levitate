@@ -1,7 +1,7 @@
 Type: Package
 Package: levitate
 Title: Fuzzy String Matching
-Version: 0.1.0.9002
+Version: 0.1.0.9004
 Authors@R: 
     person(given = "Lewin",
            family = "Appleton-Fox",
