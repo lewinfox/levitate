@@ -71,16 +71,21 @@ test_that("`lev_distance()` returns the correct shape output", {
   expect_length(lev_distance(l1, l3), 3)
   expect_length(lev_distance(l4, l1), 4)
 
+  # If pairwise = TRUE then mismatched input lengths should generate an error
+  expect_error(lev_distance(l2, l2), NA)
+  expect_error(lev_distance(l2, l3), class = "levitate_length_mismatch")
+  expect_error(lev_distance(l2, l4), class = "levitate_length_mismatch")
+
   # If both inputs are longer than 1 then we expect a matrix with length(a) rows and length(b)
   # columns
-  expect_matrix(lev_distance(l2, l2))
-  expect_shape(lev_distance(l2, l2), 2, 2)
-  expect_shape(lev_distance(l3, l2), 3, 2)
-  expect_shape(lev_distance(l3, l4), 3, 4)
+  expect_matrix(lev_distance(l2, l2, pairwise = FALSE))
+  expect_shape(lev_distance(l2, l2, pairwise = FALSE), 2, 2)
+  expect_shape(lev_distance(l3, l2, pairwise = FALSE), 3, 2)
+  expect_shape(lev_distance(l3, l4, pairwise = FALSE), 3, 4)
 
   # Dimnames should be present and should match inputs
-  expect_dimnames(lev_distance(l3, l4), l3, l4)
-  expect_dimnames(lev_distance(l4, l2), l4, l2)
+  expect_dimnames(lev_distance(l3, l4, pairwise = FALSE), l3, l4)
+  expect_dimnames(lev_distance(l4, l2, pairwise = FALSE), l4, l2)
 })
 
 test_that("`lev_ratio()` returns the correct shape output", {
@@ -102,16 +107,21 @@ test_that("`lev_ratio()` returns the correct shape output", {
   expect_length(lev_ratio(l1, l3), 3)
   expect_length(lev_ratio(l4, l1), 4)
 
+  # If pairwise = TRUE then mismatched input lengths should generate an error
+  expect_error(lev_ratio(l2, l2), NA)
+  expect_error(lev_ratio(l2, l3), class = "levitate_length_mismatch")
+  expect_error(lev_ratio(l2, l4), class = "levitate_length_mismatch")
+
   # If both inputs are longer than 1 then we expect a matrix with length(a) rows and length(b)
   # columns
-  expect_matrix(lev_ratio(l2, l2))
-  expect_shape(lev_ratio(l2, l2), 2, 2)
-  expect_shape(lev_ratio(l3, l2), 3, 2)
-  expect_shape(lev_ratio(l3, l4), 3, 4)
+  expect_matrix(lev_ratio(l2, l2, pairwise = FALSE))
+  expect_shape(lev_ratio(l2, l2, pairwise = FALSE), 2, 2)
+  expect_shape(lev_ratio(l3, l2, pairwise = FALSE), 3, 2)
+  expect_shape(lev_ratio(l3, l4, pairwise = FALSE), 3, 4)
 
   # Dimnames should be present and should match inputs
-  expect_dimnames(lev_ratio(l3, l4), l3, l4)
-  expect_dimnames(lev_ratio(l4, l2), l4, l2)
+  expect_dimnames(lev_ratio(l3, l4, pairwise = FALSE), l3, l4)
+  expect_dimnames(lev_ratio(l4, l2, pairwise = FALSE), l4, l2)
 })
 
 test_that("`lev_partial_ratio()` returns the correct shape output", {
@@ -133,16 +143,21 @@ test_that("`lev_partial_ratio()` returns the correct shape output", {
   expect_length(lev_partial_ratio(l1, l3), 3)
   expect_length(lev_partial_ratio(l4, l1), 4)
 
+  # If pairwise = TRUE then mismatched input lengths should generate an error
+  expect_error(lev_partial_ratio(l2, l2), NA)
+  expect_error(lev_partial_ratio(l2, l3), class = "levitate_length_mismatch")
+  expect_error(lev_partial_ratio(l2, l4), class = "levitate_length_mismatch")
+
   # If both inputs are longer than 1 then we expect a matrix with length(a) rows and length(b)
   # columns
-  expect_matrix(lev_partial_ratio(l2, l2))
-  expect_shape(lev_partial_ratio(l2, l2), 2, 2)
-  expect_shape(lev_partial_ratio(l3, l2), 3, 2)
-  expect_shape(lev_partial_ratio(l3, l4), 3, 4)
+  expect_matrix(lev_partial_ratio(l2, l2, pairwise = FALSE))
+  expect_shape(lev_partial_ratio(l2, l2, pairwise = FALSE), 2, 2)
+  expect_shape(lev_partial_ratio(l3, l2, pairwise = FALSE), 3, 2)
+  expect_shape(lev_partial_ratio(l3, l4, pairwise = FALSE), 3, 4)
 
   # Dimnames should be present and should match inputs
-  expect_dimnames(lev_partial_ratio(l3, l4), l3, l4)
-  expect_dimnames(lev_partial_ratio(l4, l2), l4, l2)
+  expect_dimnames(lev_partial_ratio(l3, l4, pairwise = FALSE), l3, l4)
+  expect_dimnames(lev_partial_ratio(l4, l2, pairwise = FALSE), l4, l2)
 })
 
 test_that("`lev_token_sort_ratio()` returns the correct shape output", {
@@ -164,16 +179,21 @@ test_that("`lev_token_sort_ratio()` returns the correct shape output", {
   expect_length(lev_token_sort_ratio(l1, l3), 3)
   expect_length(lev_token_sort_ratio(l4, l1), 4)
 
+  # If pairwise = TRUE then mismatched input lengths should generate an error
+  expect_error(lev_token_sort_ratio(l2, l2), NA)
+  expect_error(lev_token_sort_ratio(l2, l3), class = "levitate_length_mismatch")
+  expect_error(lev_token_sort_ratio(l2, l4), class = "levitate_length_mismatch")
+
   # If both inputs are longer than 1 then we expect a matrix with length(a) rows and length(b)
   # columns
-  expect_matrix(lev_token_sort_ratio(l2, l2))
-  expect_shape(lev_token_sort_ratio(l2, l2), 2, 2)
-  expect_shape(lev_token_sort_ratio(l3, l2), 3, 2)
-  expect_shape(lev_token_sort_ratio(l3, l4), 3, 4)
+  expect_matrix(lev_token_sort_ratio(l2, l2, pairwise = FALSE))
+  expect_shape(lev_token_sort_ratio(l2, l2, pairwise = FALSE), 2, 2)
+  expect_shape(lev_token_sort_ratio(l3, l2, pairwise = FALSE), 3, 2)
+  expect_shape(lev_token_sort_ratio(l3, l4, pairwise = FALSE), 3, 4)
 
   # Dimnames should be present and should match inputs
-  expect_dimnames(lev_token_sort_ratio(l3, l4), l3, l4)
-  expect_dimnames(lev_token_sort_ratio(l4, l2), l4, l2)
+  expect_dimnames(lev_token_sort_ratio(l3, l4, pairwise = FALSE), l3, l4)
+  expect_dimnames(lev_token_sort_ratio(l4, l2, pairwise = FALSE), l4, l2)
 })
 
 test_that("`lev_token_set_ratio()` returns the correct shape output", {
@@ -195,20 +215,25 @@ test_that("`lev_token_set_ratio()` returns the correct shape output", {
   expect_length(lev_token_set_ratio(l1, l3), 3)
   expect_length(lev_token_set_ratio(l4, l1), 4)
 
+  # If pairwise = TRUE then mismatched input lengths should generate an error
+  expect_error(lev_token_set_ratio(l2, l2), NA)
+  expect_error(lev_token_set_ratio(l2, l3), class = "levitate_length_mismatch")
+  expect_error(lev_token_set_ratio(l2, l4), class = "levitate_length_mismatch")
+
   # If both inputs are longer than 1 then we expect a matrix with length(a) rows and length(b)
   # columns
-  expect_matrix(lev_token_set_ratio(l2, l2))
-  expect_shape(lev_token_set_ratio(l2, l2), 2, 2)
-  expect_shape(lev_token_set_ratio(l3, l2), 3, 2)
-  expect_shape(lev_token_set_ratio(l3, l4), 3, 4)
+  expect_matrix(lev_token_set_ratio(l2, l2, pairwise = FALSE))
+  expect_shape(lev_token_set_ratio(l2, l2, pairwise = FALSE), 2, 2)
+  expect_shape(lev_token_set_ratio(l3, l2, pairwise = FALSE), 3, 2)
+  expect_shape(lev_token_set_ratio(l3, l4, pairwise = FALSE), 3, 4)
 
   # Dimnames should be present and should match inputs
-  expect_dimnames(lev_token_set_ratio(l3, l4), l3, l4)
-  expect_dimnames(lev_token_set_ratio(l4, l2), l4, l2)
+  expect_dimnames(lev_token_set_ratio(l3, l4, pairwise = FALSE), l3, l4)
+  expect_dimnames(lev_token_set_ratio(l4, l2, pairwise = FALSE), l4, l2)
 })
 
 # When given inputs of different lengths that are not a multiple of each other lev_dist() triggers
 # a warning from `pmax()` about partial recycling. This is annoying and should be fixed if possible.
 test_that("`lev_ratio()` does not warn about fractional argument recycling", {
-  expect_warning(lev_ratio(c("a", "b"), c("a", "b", "c")), NA)
+  expect_warning(lev_ratio(c("a", "b"), c("a", "b", "c"), pairwise = FALSE), NA)
 })

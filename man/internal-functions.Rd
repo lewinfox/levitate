@@ -6,14 +6,18 @@
 \alias{internal_lev_partial_ratio}
 \title{Internal functions}
 \usage{
-internal_lev_token_set_ratio(a, b, useNames = TRUE, ...)
+internal_lev_token_set_ratio(a, b, pairwise = TRUE, useNames = !pairwise, ...)
 
-internal_lev_partial_ratio(a, b, useNames = TRUE, ...)
+internal_lev_partial_ratio(a, b, pairwise = TRUE, useNames = !pairwise, ...)
 }
 \arguments{
 \item{a, b}{The input strings. For these "internal" functions these must be length 1}
 
-\item{useNames}{Boolean. Use input vectors as row and column names?}
+\item{pairwise}{Boolean. If \code{TRUE}, only the pairwise distances between \code{a} and \code{b} will be
+computed, rather than the combinations of all elements.}
+
+\item{useNames}{Boolean. Use input vectors as row and column names? Only relevant if
+\code{pairwise = FALSE}.}
 
 \item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}

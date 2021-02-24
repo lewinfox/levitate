@@ -3,7 +3,10 @@
 #' Default parameters inherited by other documentation
 #'
 #' @param a,b The input strings
-#' @param useNames Boolean. Use input vectors as row and column names?
+#' @param pairwise Boolean. If `TRUE`, only the pairwise distances between `a` and `b` will be
+#'   computed, rather than the combinations of all elements.
+#' @param useNames Boolean. Use input vectors as row and column names? Only relevant if
+#'   `pairwise = FALSE`.
 #' @param ... Additional arguments to be passed to [stringdist::stringdistmatrix()] or
 #'   [stringdist::stringsimmatrix()].
 #'
@@ -45,7 +48,19 @@ NULL
 #' lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
 #'
 #' lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-lev_distance <- function(a, b, useNames = TRUE, ...) {
+lev_distance <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+  if (pairwise) {
+    len_a <- length(a)
+    len_b <- length(b)
+    if (len_a == len_b || len_a == 1 || len_b == 1) {
+      if (useNames) {
+        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
+      }
+      res <- stringdist::stringdist(a, b, ...)
+      return(res)
+    }
+    rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+  }
   res <- stringdist::stringdistmatrix(a, b, useNames = useNames, ...)
   lev_simplify_matrix(res)
 }
@@ -74,10 +89,22 @@ lev_distance <- function(a, b, useNames = TRUE, ...) {
 #' lev_ratio("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
 #'
 #' lev_ratio(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-lev_ratio <- function(a, b, useNames = TRUE, ...) {
+lev_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
   # TODO: Where the arguments are different lengths that are not a multiple of each other we get a
   #       warning about fractional argument recycling from `pdist()` which is used by
   #       `stringdist::stringsimmatrix()`. Suppressing the warning like this is bad practice!
+  if (pairwise) {
+    len_a <- length(a)
+    len_b <- length(b)
+    if (len_a == len_b || len_a == 1 || len_b == 1) {
+      if (useNames) {
+        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
+      }
+      res <- stringdist::stringsim(a, b, ...)
+      return(res)
+    }
+    rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+  }
   if (length(a) %% length(b) != 0) {
     res <- suppressWarnings(stringdist::stringsimmatrix(a = a, b = b, useNames = useNames, ...))
   } else {
@@ -107,9 +134,29 @@ lev_ratio <- function(a, b, useNames = TRUE, ...) {
 #' # Here the two "Bruce Springsteen" strings will match perfectly.
 #' lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
 #' #> [1] 1
-lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
-  inputs <- expand.grid(a = a, b = b)
-  scores <- apply(inputs, 1, function(row) internal_lev_partial_ratio(row[1], row[2], useNames = useNames, ...))
+lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+  if (pairwise) {
+    len_a <- length(a)
+    len_b <- length(b)
+    if (len_a == len_b || len_a == 1 || len_b == 1) {
+      if (useNames) {
+        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
+      }
+      inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
+    } else {
+      rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+    }
+  } else {
+    inputs <- expand.grid(a = a, b = b)
+  }
+  scores <- apply(
+    inputs,
+    1,
+    function(row) internal_lev_partial_ratio(row[1], row[2], pairwise = pairwise, useNames = useNames, ...)
+  )
+  if (pairwise) {
+    return(scores)
+  }
   res <- matrix(scores, nrow = length(a), ncol = length(b), dimnames = list(a, b))
   lev_simplify_matrix(res)
 }
@@ -137,7 +184,7 @@ lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
 #'
 #' # The sorted token approach ignores word order.
 #' lev_token_sort_ratio(x, y)
-lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
+lev_token_sort_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
   # TODO: We should have the option to supply our own tokeniser function / regex here.
   #       * Add an arg `tokeniser`
   #       * It it's a character, assume regex and pass to `strsplit()`
@@ -145,7 +192,7 @@ lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
   #       * Write a vignette.
   a <- str_token_sort(a)
   b <- str_token_sort(b)
-  res <- lev_ratio(a, b, useNames = useNames, ...)
+  res <- lev_ratio(a, b, pairwise = pairwise, useNames = useNames, ...)
   lev_simplify_matrix(res)
 }
 
@@ -183,9 +230,29 @@ lev_token_sort_ratio <- function(a, b, useNames = TRUE, ...) {
 #' lev_token_sort_ratio(x, y)
 #'
 #' lev_token_set_ratio(x, y)
-lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
-  inputs <- expand.grid(a = a, b = b)
-  scores <- apply(inputs, 1, function(row) internal_lev_token_set_ratio(row[1], row[2], useNames = useNames, ...))
+lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+  if (pairwise) {
+    len_a <- length(a)
+    len_b <- length(b)
+    if (len_a == len_b || len_a == 1 || len_b == 1) {
+      if (useNames) {
+        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
+      }
+      inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
+    } else {
+      rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+    }
+  } else {
+    inputs <- expand.grid(a = a, b = b)
+  }
+  scores <- apply(
+    inputs,
+    1,
+    function(row) internal_lev_token_set_ratio(row[1], row[2], pairwise = pairwise, useNames = useNames, ...)
+  )
+  if (pairwise) {
+    return(scores)
+  }
   res <- matrix(scores, nrow = length(a), ncol = length(b), dimnames = list(a, b))
   lev_simplify_matrix(res)
 }
@@ -209,7 +276,7 @@ lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
 NULL
 
 #' @describeIn internal-functions See [lev_token_set_ratio()].
-internal_lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
+internal_lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
 
   token_a <- unlist(str_tokenise(a))
   token_b <- unlist(str_tokenise(b))
@@ -226,20 +293,20 @@ internal_lev_token_set_ratio <- function(a, b, useNames = TRUE, ...) {
   # For this to work properly we need to stick `common_tokens` back together into a single string.
   common_tokens <- paste(common_tokens, collapse = " ")
   res <- max(
-    lev_ratio(common_tokens, new_a, useNames = useNames, ...),
-    lev_ratio(common_tokens, new_b, useNames = useNames, ...),
-    lev_ratio(new_a, new_b, useNames = useNames, ...)
+    lev_ratio(common_tokens, new_a, pairwise = TRUE, useNames = useNames, ...),
+    lev_ratio(common_tokens, new_b, pairwise = TRUE, useNames = useNames, ...),
+    lev_ratio(new_a, new_b, pairwise = TRUE, useNames = useNames, ...)
   )
   lev_simplify_matrix(res)
 }
 
 #' @describeIn internal-functions See [lev_partial_ratio()].
-internal_lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
+internal_lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
   # Assume we are only dealing with one string each
   len_a <- nchar(a)
   len_b <- nchar(b)
   if (len_a == len_b) {
-    return(lev_ratio(a = a, b = b, useNames = useNames, ...))
+    return(lev_ratio(a = a, b = b, pairwise = pairwise, useNames = useNames, ...))
   }
   short <- NULL
   long <- NULL
@@ -254,7 +321,7 @@ internal_lev_partial_ratio <- function(a, b, useNames = TRUE, ...) {
     n <- len_b
   }
   candidates <- str_all_substrings(long, n)
-  scores <- lev_ratio(a = a, b = candidates, useNames = useNames, ...)
+  scores <- lev_ratio(a = a, b = candidates, pairwise = FALSE, useNames = useNames, ...)
   max(scores)
 }
 
@@ -278,7 +345,7 @@ lev_simplify_matrix <- function(m) {
   if (n_row == 1 || n_col == 1) {
     # We can return a vector
     if (n_row == n_col || is.null(dimnames(m))) {
-      # Both are 1 or we don't care about names, or there are no names. Return an unnamed vector.
+      # Both are 1 so we don't care about names, or there are no names. Return an unnamed vector.
       return(as.vector(m))
     }
     # The names of the longer axis become the names of the vector

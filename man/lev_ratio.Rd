@@ -4,14 +4,18 @@
 \alias{lev_ratio}
 \title{String similarity ratio}
 \usage{
-lev_ratio(a, b, useNames = TRUE, ...)
+lev_ratio(a, b, pairwise = TRUE, useNames = !pairwise, ...)
 }
 \arguments{
 \item{a}{The input strings}
 
 \item{b}{The input strings}
 
-\item{useNames}{Boolean. Use input vectors as row and column names?}
+\item{pairwise}{Boolean. If \code{TRUE}, only the pairwise distances between \code{a} and \code{b} will be
+computed, rather than the combinations of all elements.}
+
+\item{useNames}{Boolean. Use input vectors as row and column names? Only relevant if
+\code{pairwise = FALSE}.}
 
 \item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
