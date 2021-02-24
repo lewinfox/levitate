@@ -74,7 +74,7 @@ single-length inputs, and the calling functions just apply() them as needed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">levitate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9002</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9004</span>
       </span>
     </div>
 
@@ -121,9 +121,9 @@ interests of lazy thinking these "internal" versions contain the logic to operat
 single-length inputs, and the calling functions just <code><a href='https://rdrr.io/r/base/apply.html'>apply()</a></code> them as needed.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>internal_lev_token_set_ratio</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, useNames <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
+    <pre class="usage"><span class='fu'>internal_lev_token_set_ratio</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, pairwise <span class='op'>=</span> <span class='cn'>TRUE</span>, useNames <span class='op'>=</span> <span class='op'>!</span><span class='va'>pairwise</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>internal_lev_partial_ratio</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, useNames <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>internal_lev_partial_ratio</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, pairwise <span class='op'>=</span> <span class='cn'>TRUE</span>, useNames <span class='op'>=</span> <span class='op'>!</span><span class='va'>pairwise</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,8 +133,14 @@ single-length inputs, and the calling functions just <code><a href='https://rdrr
       <td><p>The input strings. For these "internal" functions these must be length 1</p></td>
     </tr>
     <tr>
+      <th>pairwise</th>
+      <td><p>Boolean. If <code>TRUE</code>, only the pairwise distances between <code>a</code> and <code>b</code> will be
+computed, rather than the combinations of all elements.</p></td>
+    </tr>
+    <tr>
       <th>useNames</th>
-      <td><p>Boolean. Use input vectors as row and column names?</p></td>
+      <td><p>Boolean. Use input vectors as row and column names? Only relevant if
+<code>pairwise = FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
