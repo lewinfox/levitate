@@ -5,8 +5,7 @@
 #' @param a,b The input strings
 #' @param pairwise Boolean. If `TRUE`, only the pairwise distances between `a` and `b` will be
 #'   computed, rather than the combinations of all elements.
-#' @param useNames Boolean. Use input vectors as row and column names? Only relevant if
-#'   `pairwise = FALSE`.
+#' @param useNames Boolean. Use input vectors as row and column names?
 #' @param ... Additional arguments to be passed to [stringdist::stringdistmatrix()] or
 #'   [stringdist::stringsimmatrix()].
 #'
@@ -48,18 +47,21 @@ NULL
 #' lev_distance("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
 #'
 #' lev_distance(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-lev_distance <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+lev_distance <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   if (pairwise) {
     len_a <- length(a)
     len_b <- length(b)
-    if (len_a == len_b || len_a == 1 || len_b == 1) {
-      if (useNames) {
-        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
-      }
+    if (len_a != len_b && len_a > 1 && len_b > 1) {
+      rlang::abort(
+        "`a` and `b` must be the same length (or one must be length 1) for pairwise comparison",
+        "levitate_length_mismatch"
+      )
+    }
+    # The pairwise argument is only relevant where both inputs are longer than 1.
+    if (len_a > 1 && len_b > 1) {
       res <- stringdist::stringdist(a, b, ...)
       return(res)
     }
-    rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
   }
   res <- stringdist::stringdistmatrix(a, b, useNames = useNames, ...)
   lev_simplify_matrix(res)
@@ -89,22 +91,25 @@ lev_distance <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
 #' lev_ratio("Bilbo", c("Frodo", "Merry"), useNames = FALSE)
 #'
 #' lev_ratio(c("Bilbo", "Gandalf"), c("Frodo", "Merry"))
-lev_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
-  # TODO: Where the arguments are different lengths that are not a multiple of each other we get a
-  #       warning about fractional argument recycling from `pdist()` which is used by
-  #       `stringdist::stringsimmatrix()`. Suppressing the warning like this is bad practice!
+lev_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   if (pairwise) {
     len_a <- length(a)
     len_b <- length(b)
-    if (len_a == len_b || len_a == 1 || len_b == 1) {
-      if (useNames) {
-        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
-      }
+    if (len_a != len_b && len_a > 1 && len_b > 1) {
+      rlang::abort(
+        "`a` and `b` must be the same length (or one must be length 1) for pairwise comparison",
+        "levitate_length_mismatch"
+      )
+    }
+    # The pairwise argument is only relevant where both inputs are longer than 1.
+    if (len_a > 1 && len_b > 1) {
       res <- stringdist::stringsim(a, b, ...)
       return(res)
     }
-    rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
   }
+  # TODO: Where the arguments are different lengths that are not a multiple of each other we get a
+  #       warning about fractional argument recycling from `pdist()` which is used by
+  #       `stringdist::stringsimmatrix()`. Suppressing the warning like this is bad practice!
   if (length(a) %% length(b) != 0) {
     res <- suppressWarnings(stringdist::stringsimmatrix(a = a, b = b, useNames = useNames, ...))
   } else {
@@ -134,18 +139,17 @@ lev_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
 #' # Here the two "Bruce Springsteen" strings will match perfectly.
 #' lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
 #' #> [1] 1
-lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   if (pairwise) {
     len_a <- length(a)
     len_b <- length(b)
-    if (len_a == len_b || len_a == 1 || len_b == 1) {
-      if (useNames) {
-        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
-      }
-      inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
-    } else {
-      rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+    if (len_a != len_b && len_a > 1 && len_b > 1) {
+      rlang::abort(
+        "`a` and `b` must be the same length (or one must be length 1) for pairwise comparison",
+        "levitate_length_mismatch"
+      )
     }
+    inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
   } else {
     inputs <- expand.grid(a = a, b = b)
   }
@@ -184,7 +188,7 @@ lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) 
 #'
 #' # The sorted token approach ignores word order.
 #' lev_token_sort_ratio(x, y)
-lev_token_sort_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+lev_token_sort_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   # TODO: We should have the option to supply our own tokeniser function / regex here.
   #       * Add an arg `tokeniser`
   #       * It it's a character, assume regex and pass to `strsplit()`
@@ -230,18 +234,17 @@ lev_token_sort_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ..
 #' lev_token_sort_ratio(x, y)
 #'
 #' lev_token_set_ratio(x, y)
-lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
+lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   if (pairwise) {
     len_a <- length(a)
     len_b <- length(b)
-    if (len_a == len_b || len_a == 1 || len_b == 1) {
-      if (useNames) {
-        cli::cli_alert_info("`useNames = TRUE` has no effect when `pairwise = TRUE`")
-      }
-      inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
-    } else {
-      rlang::abort("`a` and `b` must be the same length, or one of them must be length 1", "levitate_length_mismatch")
+    if (len_a != len_b && len_a > 1 && len_b > 1) {
+      rlang::abort(
+        "`a` and `b` must be the same length (or one must be length 1) for pairwise comparison",
+        "levitate_length_mismatch"
+      )
     }
+    inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
   } else {
     inputs <- expand.grid(a = a, b = b)
   }
