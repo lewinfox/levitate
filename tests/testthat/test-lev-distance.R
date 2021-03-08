@@ -237,3 +237,45 @@ test_that("`lev_token_set_ratio()` returns the correct shape output", {
 test_that("`lev_ratio()` does not warn about fractional argument recycling", {
   expect_warning(lev_ratio(c("a", "b"), c("a", "b", "c"), pairwise = FALSE), NA)
 })
+
+test_that("useNames option is respected for vector outputs", {
+  a <- c("cat", "bat", "rat")
+  b <- c("tat")
+
+  # Scalar values should not be named under any circumstances
+  expect_named(lev_distance(b, b), NULL)
+  expect_named(lev_ratio(b, b), NULL)
+  expect_named(lev_partial_ratio(b, b), NULL)
+  expect_named(lev_token_sort_ratio(b, b), NULL)
+  expect_named(lev_token_set_ratio(b, b), NULL)
+  expect_named(lev_distance(b, b, useNames = FALSE), NULL)
+  expect_named(lev_ratio(b, b, useNames = FALSE), NULL)
+  expect_named(lev_partial_ratio(b, b, useNames = FALSE), NULL)
+  expect_named(lev_token_sort_ratio(b, b, useNames = FALSE), NULL)
+  expect_named(lev_token_set_ratio(b, b, useNames = FALSE), NULL)
+
+  # Nor should pairwise comparisons where the inputs are both longer than 1
+  expect_named(lev_distance(a, a), NULL)
+  expect_named(lev_ratio(a, a), NULL)
+  expect_named(lev_partial_ratio(a, a), NULL)
+  expect_named(lev_token_sort_ratio(a, a), NULL)
+  expect_named(lev_token_set_ratio(a, a), NULL)
+  expect_named(lev_distance(a, a, useNames = FALSE), NULL)
+  expect_named(lev_ratio(a, a, useNames = FALSE), NULL)
+  expect_named(lev_partial_ratio(a, a, useNames = FALSE), NULL)
+  expect_named(lev_token_sort_ratio(a, a, useNames = FALSE), NULL)
+  expect_named(lev_token_set_ratio(a, a, useNames = FALSE), NULL)
+
+  # Where one input is length 1 and the other is longer we expect the useNames option to be
+  # respected.
+  expect_named(lev_distance(a, b), a)
+  expect_named(lev_ratio(a, b), a)
+  expect_named(lev_partial_ratio(a, b), a)
+  expect_named(lev_token_sort_ratio(a, b), a)
+  expect_named(lev_token_set_ratio(a, b), a)
+  expect_named(lev_distance(a, b, useNames = FALSE), NULL)
+  expect_named(lev_ratio(a, b, useNames = FALSE), NULL)
+  expect_named(lev_partial_ratio(a, b, useNames = FALSE), NULL)
+  expect_named(lev_token_sort_ratio(a, b, useNames = FALSE), NULL)
+  expect_named(lev_token_set_ratio(a, b, useNames = FALSE), NULL)
+})

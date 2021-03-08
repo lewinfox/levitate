@@ -149,6 +149,7 @@ lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
         "levitate_length_mismatch"
       )
     }
+    output_names <- if (len_a > len_b) a else b
     inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
   } else {
     inputs <- expand.grid(a = a, b = b)
@@ -158,7 +159,11 @@ lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
     1,
     function(row) internal_lev_partial_ratio(row[1], row[2], pairwise = pairwise, useNames = useNames, ...)
   )
+
   if (pairwise) {
+    if (useNames && ((len_a == 1 && len_b > 1) || (len_a > 1 && len_b == 1))) {
+      names(scores) <- output_names
+    }
     return(scores)
   }
   res <- matrix(scores, nrow = length(a), ncol = length(b), dimnames = list(a, b))
@@ -244,6 +249,7 @@ lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
         "levitate_length_mismatch"
       )
     }
+    output_names <- if (len_a > len_b) a else b
     inputs <- data.frame(a = a, b = b, stringsAsFactors = FALSE)
   } else {
     inputs <- expand.grid(a = a, b = b)
@@ -254,6 +260,9 @@ lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
     function(row) internal_lev_token_set_ratio(row[1], row[2], pairwise = pairwise, useNames = useNames, ...)
   )
   if (pairwise) {
+    if (useNames && ((len_a == 1 && len_b > 1) || (len_a > 1 && len_b == 1))) {
+      names(scores) <- output_names
+    }
     return(scores)
   }
   res <- matrix(scores, nrow = length(a), ncol = length(b), dimnames = list(a, b))
