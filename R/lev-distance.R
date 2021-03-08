@@ -134,11 +134,9 @@ lev_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
 #'
 #' @examples
 #' lev_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
-#' #> [1] 0.4358974
 #'
 #' # Here the two "Bruce Springsteen" strings will match perfectly.
 #' lev_partial_ratio("Bruce Springsteen", "Bruce Springsteen and the E Street Band")
-#' #> [1] 1
 lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
   if (pairwise) {
     len_a <- length(a)
