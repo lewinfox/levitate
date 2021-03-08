@@ -51,19 +51,23 @@ lev_distance("cat", "rats")
 ```
 
 The function can accept vectorised input. Where the inputs have a
-`length()` greater than 1 the results are returned as a matrix.
+`length()` greater than 1 the results are returned as a vector unless
+`pairwise = FALSE`, in which case a matrix is returned.
 
 ``` r
 lev_distance(c("cat", "dog", "clog"), c("rat", "log", "frog"))
+#> [1] 1 1 2
+
+lev_distance(c("cat", "dog", "clog"), c("rat", "log", "frog"), pairwise = FALSE)
 #>      rat log frog
 #> cat    1   3    4
 #> dog    3   1    2
 #> clog   4   1    2
 ```
 
-However if at least one (or both) of the inputs is scalar (length 1) we
-can return a vector. The elements of the vector are named based on the
-longer input.
+If at least one (or both) of the inputs is scalar (length 1) the result
+will be a vector. The elements of the vector are named based on the
+longer input (unless `useNames = FALSE`).
 
 ``` r
 lev_distance(c("cat", "dog", "clog"), "rat")
@@ -73,6 +77,9 @@ lev_distance(c("cat", "dog", "clog"), "rat")
 lev_distance("cat", c("rat", "log", "frog", "other"))
 #>   rat   log  frog other 
 #>     1     3     4     5
+
+lev_distance("cat", c("rat", "log", "frog", "other"), useNames = FALSE)
+#> [1] 1 3 4 5
 ```
 
 ### `lev_ratio()`
@@ -94,10 +101,7 @@ lev_ratio("cat", "rats")
 #> [1] 0.5
 
 lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
-#>            rat       log      frog
-#> cat  0.6666667 0.0000000 0.0000000
-#> dog  0.0000000 0.6666667 0.3333333
-#> clog 0.0000000 0.7500000 0.5000000
+#> [1] 0.6666667 0.6666667 0.5000000
 ```
 
 ### `lev_partial_ratio()`
@@ -134,7 +138,7 @@ lev_ratio(x, y)
 
 # The sorted token approach ignores word order.
 lev_token_sort_ratio(x, y)
-#> [1] 0.9117647
+#> [1] 0.9354839
 ```
 
 ### `lev_token_set_ratio()`
