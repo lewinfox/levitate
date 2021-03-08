@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">levitate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9007</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9008</span>
       </span>
     </div>
 
@@ -97,14 +97,17 @@
 
 <span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"rats"</span><span class="op">)</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
-<p>The function can accept vectorised input. Where the inputs have a <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> greater than 1 the results are returned as a matrix.</p>
+<p>The function can accept vectorised input. Where the inputs have a <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> greater than 1 the results are returned as a vector unless <code>pairwise = FALSE</code>, in which case a matrix is returned.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"clog"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rat"</span>, <span class="st">"log"</span>, <span class="st">"frog"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1 1 2</span>
+
+<span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"clog"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rat"</span>, <span class="st">"log"</span>, <span class="st">"frog"</span><span class="op">)</span>, pairwise <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="co">#&gt;      rat log frog</span>
 <span class="co">#&gt; cat    1   3    4</span>
 <span class="co">#&gt; dog    3   1    2</span>
 <span class="co">#&gt; clog   4   1    2</span></code></pre></div>
-<p>However if at least one (or both) of the inputs is scalar (length 1) we can return a vector. The elements of the vector are named based on the longer input.</p>
+<p>If at least one (or both) of the inputs is scalar (length 1) the result will be a vector. The elements of the vector are named based on the longer input (unless <code>useNames = FALSE</code>).</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"clog"</span><span class="op">)</span>, <span class="st">"rat"</span><span class="op">)</span>
 <span class="co">#&gt;  cat  dog clog </span>
@@ -112,7 +115,10 @@
 
 <span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rat"</span>, <span class="st">"log"</span>, <span class="st">"frog"</span>, <span class="st">"other"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;   rat   log  frog other </span>
-<span class="co">#&gt;     1     3     4     5</span></code></pre></div>
+<span class="co">#&gt;     1     3     4     5</span>
+
+<span class="fu"><a href="reference/lev_distance.html">lev_distance</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rat"</span>, <span class="st">"log"</span>, <span class="st">"frog"</span>, <span class="st">"other"</span><span class="op">)</span>, useNames <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="co">#&gt; [1] 1 3 4 5</span></code></pre></div>
 </div>
 <div id="lev_ratio" class="section level3">
 <h3 class="hasAnchor">
@@ -131,10 +137,7 @@
 <span class="co">#&gt; [1] 0.5</span>
 
 <span class="fu"><a href="reference/lev_ratio.html">lev_ratio</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cat"</span>, <span class="st">"dog"</span>, <span class="st">"clog"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"rat"</span>, <span class="st">"log"</span>, <span class="st">"frog"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;            rat       log      frog</span>
-<span class="co">#&gt; cat  0.6666667 0.0000000 0.0000000</span>
-<span class="co">#&gt; dog  0.0000000 0.6666667 0.3333333</span>
-<span class="co">#&gt; clog 0.0000000 0.7500000 0.5000000</span></code></pre></div>
+<span class="co">#&gt; [1] 0.6666667 0.6666667 0.5000000</span></code></pre></div>
 </div>
 <div id="lev_partial_ratio" class="section level3">
 <h3 class="hasAnchor">
@@ -165,7 +168,7 @@
 
 <span class="co"># The sorted token approach ignores word order.</span>
 <span class="fu"><a href="reference/lev_token_sort_ratio.html">lev_token_sort_ratio</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.9117647</span></code></pre></div>
+<span class="co">#&gt; [1] 0.9354839</span></code></pre></div>
 </div>
 <div id="lev_token_set_ratio" class="section level3">
 <h3 class="hasAnchor">
