@@ -33,3 +33,4 @@ str_tokenise(c("hello R", "goodbye R"))
 #> [1] "goodbye" "R"
 }
 }
+\keyword{internal}

@@ -31,3 +31,4 @@ str_all_substrings(rep("hello", 2), 4)
 #> [1] "hell" "ello"
 }
 }
+\keyword{internal}

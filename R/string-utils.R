@@ -6,6 +6,8 @@
 #' @return A character vector containing all the length `n` substrings of `x`. If `x` has length >
 #'   then a list is returned containing an entry for each input element.
 #'
+#' @keywords internal
+#'
 #' @examples
 #' \dontrun{
 #' str_all_substrings("hello", 3)
@@ -41,6 +43,8 @@ str_all_substrings <- function(x, n) {
 #'
 #' @return A list containing one character vector for each element of `x`.
 #'
+#' @keywords internal
+#'
 #' @examples
 #' \dontrun{
 #' str_tokenise("this is nice isn't it")
@@ -71,6 +75,8 @@ str_tokenise <- function(x, split = "[^[:alnum:]]+") {
 #' @param x The input string. Non-character inputs will be coerced with [as.character()].
 #'
 #' @return A character vector the same length as `x` containing the sorted tokens.
+#'
+#' @keywords internal
 #'
 #' @examples
 #' \dontrun{

@@ -17,3 +17,4 @@ Given an input matrix, try and simplify it to a scalar or vector. This requires 
 of the dimensions are 1. If the matrix has \code{\link[=dimnames]{dimnames()}} and the output has more than one item,
 name the elements according to the longest dimname.
 }
+\keyword{internal}

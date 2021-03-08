@@ -21,3 +21,4 @@ Default parameters inherited by other documentation
 \code{\link[stringdist:stringdist]{stringdist::stringdist()}}, \code{\link[stringdist:stringsim]{stringdist::stringsim()}} for details on the underlying
 functions and the additional options available.
 }
+\keyword{internal}

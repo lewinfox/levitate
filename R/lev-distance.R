@@ -11,6 +11,8 @@
 #'
 #' @name default-params
 #'
+#' @keywords internal
+#'
 #' @seealso [stringdist::stringdist()], [stringdist::stringsim()] for details on the underlying
 #'   functions and the additional options available.
 NULL
@@ -283,6 +285,8 @@ lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = TRUE, ...) {
 #' @inheritParams default-params
 #'
 #' @name internal-functions
+#'
+#' @keywords internal
 NULL
 
 #' @describeIn internal-functions See [lev_token_set_ratio()].
@@ -346,6 +350,8 @@ internal_lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwi
 #' @param m A matrix. If `m` is not a matrix it is returned unchanged.
 #'
 #' @return A scalar, vector or matrix as described above.
+#'
+#' @keywords internal
 lev_simplify_matrix <- function(m) {
   if (!is.matrix(m)) {
     return(m)

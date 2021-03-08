@@ -25,3 +25,4 @@ str_token_sort(c("R is great fun", "string manipulation is less so"))
 #> [1] "fun great is R"                 "is less manipulation so string"
 }
 }
+\keyword{internal}

@@ -33,3 +33,4 @@ single-length inputs, and the calling functions just \code{\link[=apply]{apply()
 \item \code{internal_lev_partial_ratio}: See \code{\link[=lev_partial_ratio]{lev_partial_ratio()}}.
 }}
 
+\keyword{internal}
