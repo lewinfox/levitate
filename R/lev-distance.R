@@ -335,7 +335,7 @@ internal_lev_partial_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwi
     n <- len_b
   }
   candidates <- str_all_substrings(long, n)
-  scores <- lev_ratio(a = a, b = candidates, pairwise = FALSE, useNames = useNames, ...)
+  scores <- lev_ratio(a = short, b = candidates, pairwise = FALSE, useNames = useNames, ...)
   max(scores)
 }
 
