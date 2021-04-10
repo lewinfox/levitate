@@ -9,7 +9,7 @@ reference:
 - title: "String similarity ratio"
   desc: >
     Similarity ratios are friendlier than distance measures when trying to rank strings by
-    similarity. Identical strings will have a ratio of 1.
+    similarity.
 - subtitle: "Simple ratios"
   desc: >
     These measures are useful for comparing individual words or other short strings.
