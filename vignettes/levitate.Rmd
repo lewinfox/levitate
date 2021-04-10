@@ -1,0 +1,86 @@
+---
+title: "levitate"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{levitate}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(levitate)
+```
+
+This article walks through an example of using `levitate` to compare text strings in the wild, and
+aims to give you a feel for the pros and cons of the different string similarity measures provided
+by the package.
+
+`levitate` comes with `hotel_rooms` dataset that contains descriptions of the same hotel rooms from
+two different websites, Expedia and Booking.com. The list was compiled by
+[Susan Li](https://github.com/susanli2016) - all credit to her for the work.
+
+```{r}
+head(hotel_rooms)
+```
+
+Let's add columns to the dataset showing how the different algorithms score the two strings.
+
+```{r}
+df <- hotel_rooms
+
+df$lev_ratio <- lev_ratio(df$expedia, df$booking)
+df$lev_partial_ratio <- lev_partial_ratio(df$expedia, df$booking)
+df$lev_token_sort_ratio <- lev_token_sort_ratio(df$expedia, df$booking)
+df$lev_token_set_ratio <- lev_token_set_ratio(df$expedia, df$booking)
+```
+
+## A simple matching model
+
+We can write a function to return the best match from a list of candidates.
+
+```{r}
+best_match <- function(a, b, FUN) {
+  scores <- FUN(a = a, b = b)
+  best <- order(scores, decreasing = TRUE)[1L]
+  b[best]
+}
+
+best_match("cat", c("cot", "dog", "frog"), lev_ratio)
+```
+
+We can then use this to find out which of the Booking.com entries each of the functions choose for
+each of the Expedia entries.
+
+```{r}
+best_match_by_fun <- function(FUN) {
+  best_matches <- character(nrow(hotel_rooms))
+  for (i in seq_along(best_matches)) {
+    best_matches[i] <- best_match(hotel_rooms$expedia[i], hotel_rooms$booking, FUN)
+  }
+  best_matches
+}
+
+df$lev_ratio_best_match <- best_match_by_fun(FUN = lev_ratio)
+df$lev_partial_ratio_best_match <- best_match_by_fun(FUN = lev_partial_ratio)
+df$lev_token_sort_ratio_best_match <- best_match_by_fun(FUN = lev_token_sort_ratio)
+df$lev_token_set_ratio_best_match <- best_match_by_fun(FUN = lev_token_set_ratio)
+```
+
+We can now see how many each algo got right.
+
+```{r}
+message("`lev_ratio()`: ", sum(df$lev_ratio_best_match == df$booking) / nrow(df))
+
+message("`lev_partial_ratio()`: ", sum(df$lev_partial_ratio_best_match == df$booking) / nrow(df))
+
+message("`lev_token_sort_ratio()`: ", sum(df$lev_token_sort_ratio_best_match == df$booking) / nrow(df))
+
+message("`lev_token_set_ratio()`: ", sum(df$lev_token_set_ratio_best_match == df$booking) / nrow(df))
+```
