@@ -21,4 +21,4 @@ hotel_rooms
 The dataset contains 85 descriptions of the same hotel rooms from
 Expedia and Booking.com.
 }
-\keyword{datasets}
+\keyword{internal}
