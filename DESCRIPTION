@@ -9,7 +9,7 @@ Authors@R:
            role = c("aut", "cre"))
 Description: Fuzzy string matching based on the Python fuzzywuzzy package.
 License: GPL-3 + file LICENSE
-URL: https://github.com/lewinfox/levitate
+URL: https://lewinfox.github.io/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
 Suggests: 
     pkgdown,
