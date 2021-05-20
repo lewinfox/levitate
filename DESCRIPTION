@@ -7,10 +7,10 @@ Authors@R:
            family = "Appleton-Fox",
            role = c("aut", "cre", "cph"),
            email = "lewin.a.f@gmail.com")
-Description: Fuzzy string matching based on the Python 'fuzzywuzzy' package.
+Description: Fuzzy string matching based on the Python 'fuzzywuzzy'
+    package.
 License: GPL-3
-URL: https://lewinfox.github.io/levitate/,
-    https://github.com/lewinfox/levitate/
+URL: https://lewinfox.github.io/levitate/, https://github.com/lewinfox/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
 Depends: 
     R (>= 2.10)
