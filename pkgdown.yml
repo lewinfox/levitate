@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   levitate: levitate.html
-last_built: 2021-05-20T23:33Z
+last_built: 2021-05-20T23:56Z
 urls:
   reference: https://lewinfox.github.io/levitate/reference
   article: https://lewinfox.github.io/levitate/articles
