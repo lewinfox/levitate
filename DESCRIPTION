@@ -5,27 +5,29 @@ Version: 0.1.0
 Authors@R: 
     person(given = "Lewin",
            family = "Appleton-Fox",
-           email = "lewin.a.f@gmail.com",
-           role = c("aut", "cre"))
+           role = c("aut", "cre"),
+           email = "lewin.a.f@gmail.com")
 Description: Fuzzy string matching based on the Python fuzzywuzzy package.
 License: GPL-3 + file LICENSE
-URL: https://lewinfox.github.io/levitate/, https://github.com/lewinfox/levitate/
+URL: https://lewinfox.github.io/levitate/,
+    https://github.com/lewinfox/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
-Suggests: 
-    pkgdown,
-    testthat,
-    knitr,
-    rmarkdown
-Encoding: UTF-8
-LazyData: true
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
 Imports: 
     cli,
     glue,
     rlang,
     stringdist,
     stringr
-VignetteBuilder: knitr
-Depends: 
-    R (>= 2.10)
+Suggests: 
+    knitr,
+    pkgdown,
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
