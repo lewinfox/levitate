@@ -7,8 +7,7 @@
 
 <!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
 
-[![Travis build
-status](https://travis-ci.com/lewinfox/levitate.svg?branch=main)](https://travis-ci.com/lewinfox/levitate)
+[![R-CMD-check](https://github.com/lewinfox/levitate/workflows/R-CMD-check/badge.svg)](https://github.com/lewinfox/levitate/actions)
 <!-- badges: end -->
 
 `levitate` is based on the Python
