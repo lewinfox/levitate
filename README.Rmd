@@ -29,6 +29,14 @@ A common measure of string similarity is the
 [**Lev**enshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), and the name was
 available on CRAN.
 
+## Installation
+
+Install the development version from Github:
+
+``` r
+devtools::install_github("lewinfox/levitate")
+```
+
 ## Examples
 
 ### `lev_distance()`
