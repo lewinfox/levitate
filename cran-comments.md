@@ -6,11 +6,14 @@ Following feedback from Uwe Ligges I have:
 * Removed non-GPL compliant LICENSE file
 * Added "cph" role to Authors@R
 
+
 ## Test environments
-* ubuntu 16.04 (R 3.6.3) via travis-ci
-* ubuntu 16.04 (R 4.0.2) via travis-ci
-* ubuntu 16.04 (R-devel 2021-04-08 r80148) via travis-ci
-* ubuntu 20.04 (R 4.0.5)
+
+* MacOS 10.15.7 (R-release)
+* Ubuntu 20.04  (R-release) 
+* Ubuntu 20.04  (R-devel)
+* Windows 10.0  (R-release)
+
 
 ## R CMD check results
 
