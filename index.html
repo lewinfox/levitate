@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Fuzzy String Matching">
-<meta property="og:description" content="Fuzzy string matching based on the Python fuzzywuzzy package.">
+<meta property="og:description" content="Fuzzy string matching based on the Python fuzzywuzzy
+    package.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -180,9 +181,9 @@
 <a href="#lev_token_set_ratio" class="anchor"></a><code>lev_token_set_ratio()</code>
 </h3>
 <p>Similar to <code><a href="reference/lev_token_sort_ratio.html">lev_token_sort_ratio()</a></code> this function breaks the input down into tokens. It then identifies any common tokens between strings and creates three new strings:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x &lt;-<span class="st"> </span>{common_tokens}</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">y &lt;-<span class="st"> </span>{common_tokens}{remaining_unique_tokens_from_string_a}</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">z &lt;-<span class="st"> </span>{common_tokens}{remaining_unique_tokens_from_string_b}</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>x &lt;-<span class="st"> </span>{common_tokens}</span>
+<span id="cb7-2"><a href="#cb7-2"></a>y &lt;-<span class="st"> </span>{common_tokens}{remaining_unique_tokens_from_string_a}</span>
+<span id="cb7-3"><a href="#cb7-3"></a>z &lt;-<span class="st"> </span>{common_tokens}{remaining_unique_tokens_from_string_b}</span></code></pre></div>
 <p>and performs three pairwise <code><a href="reference/lev_ratio.html">lev_ratio()</a></code> calculations between them (<code>x</code> vs <code>y</code>, <code>y</code> vs <code>z</code> and <code>x</code> vs <code>z</code>). The highest of those three ratios is returned.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"the quick brown fox jumps over the lazy dog"</span>
@@ -221,20 +222,20 @@
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a></small></li>
 </ul>
 </div>
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Lewin Appleton-Fox <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Lewin Appleton-Fox <br><small class="roles"> Author, maintainer, copyright holder </small>  </li>
 </ul>
 </div>
 
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.com/lewinfox/levitate"><img src="https://travis-ci.com/lewinfox/levitate.svg?branch=main" alt="Travis build status"></a></li>
+<li><a href="https://github.com/lewinfox/levitate/actions"><img src="https://github.com/lewinfox/levitate/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 </div>

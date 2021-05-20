@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://github.com/lewinfox/levitate/index.html</loc>
+    <loc>https://lewinfox.github.io/levitate/index.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/default-params.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/default-params.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/hotel_rooms.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/hotel_rooms.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/internal-functions.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/internal-functions.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_distance.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_distance.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_partial_ratio.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_partial_ratio.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_ratio.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_ratio.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_simplify_matrix.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_simplify_matrix.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_token_set_ratio.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_token_set_ratio.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/lev_token_sort_ratio.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/lev_token_sort_ratio.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/str_all_substrings.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/str_all_substrings.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/str_token_sort.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/str_token_sort.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/reference/str_tokenise.html</loc>
+    <loc>https://lewinfox.github.io/levitate/reference/str_tokenise.html</loc>
   </url>
   <url>
-    <loc>https://github.com/lewinfox/levitate/articles/levitate.html</loc>
+    <loc>https://lewinfox.github.io/levitate/articles/levitate.html</loc>
   </url>
 </urlset>
