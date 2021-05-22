@@ -1,6 +1,6 @@
 ## Resubmission
 
-Following feedback from Gregor Sayer I have:
+Following feedback from Gregor Seyer I have:
 
 * Expanded the Description field.
 * Ensured there are no references to 'levitate', 'this package' etc. in
