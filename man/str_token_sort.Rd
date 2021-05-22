@@ -16,13 +16,4 @@ A character vector the same length as \code{x} containing the sorted tokens.
 Given an input string, tokenise it (using \code{\link[=str_tokenise]{str_tokenise()}}), sort the tokens alphabetically and
 return the result as a single space-separated string.
 }
-\examples{
-\dontrun{
-str_token_sort("R is great fun")
-#> [1] "fun great is R"
-
-str_token_sort(c("R is great fun", "string manipulation is less so"))
-#> [1] "fun great is R"                 "is less manipulation so string"
-}
-}
 \keyword{internal}

@@ -7,19 +7,6 @@
 #'   then a list is returned containing an entry for each input element.
 #'
 #' @keywords internal
-#'
-#' @examples
-#' \dontrun{
-#' str_all_substrings("hello", 3)
-#' #> [1] "hel" "ell" "llo"
-#'
-#' str_all_substrings(rep("hello", 2), 4)
-#' #> [[1]]
-#' #> [1] "hell" "ello"
-#' #>
-#' #> [[2]]
-#' #> [1] "hell" "ello"
-#' }
 str_all_substrings <- function(x, n) {
   if (!is.character(x)) {
     x <- as.character(x)
@@ -44,21 +31,6 @@ str_all_substrings <- function(x, n) {
 #' @return A list containing one character vector for each element of `x`.
 #'
 #' @keywords internal
-#'
-#' @examples
-#' \dontrun{
-#' str_tokenise("this is nice isn't it")
-#' #> [[1]]
-#' #> [1] "this" "is"   "nice" "isn"  "t"    "it"
-#'
-#' str_tokenise(c("hello R", "goodbye R"))
-#'
-#' #> [[1]]
-#' #> [1] "hello" "R"
-#'
-#' #> [[2]]
-#' #> [1] "goodbye" "R"
-#' }
 str_tokenise <- function(x, split = "[^[:alnum:]]+") {
   if (!is.character(x)) {
     x <- as.character(x)
@@ -77,15 +49,6 @@ str_tokenise <- function(x, split = "[^[:alnum:]]+") {
 #' @return A character vector the same length as `x` containing the sorted tokens.
 #'
 #' @keywords internal
-#'
-#' @examples
-#' \dontrun{
-#' str_token_sort("R is great fun")
-#' #> [1] "fun great is R"
-#'
-#' str_token_sort(c("R is great fun", "string manipulation is less so"))
-#' #> [1] "fun great is R"                 "is less manipulation so string"
-#' }
 str_token_sort <- function(x) {
   if (!is.character(x)) {
     x <- as.character(x)
