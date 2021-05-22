@@ -18,17 +18,4 @@ then a list is returned containing an entry for each input element.
 \description{
 Find all substrings of a given length
 }
-\examples{
-\dontrun{
-str_all_substrings("hello", 3)
-#> [1] "hel" "ell" "llo"
-
-str_all_substrings(rep("hello", 2), 4)
-#> [[1]]
-#> [1] "hell" "ello"
-#>
-#> [[2]]
-#> [1] "hell" "ello"
-}
-}
 \keyword{internal}

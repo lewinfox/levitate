@@ -1,16 +1,20 @@
 Type: Package
 Package: levitate
-Title: Fuzzy String Matching
+Title: Fuzzy String Comparison
 Version: 0.1.0
 Authors@R: 
     person(given = "Lewin",
            family = "Appleton-Fox",
            role = c("aut", "cre", "cph"),
            email = "lewin.a.f@gmail.com")
-Description: Fuzzy string matching based on the Python 'fuzzywuzzy'
-    package.
+Description: Provides string similarity calculations inspired by the
+    Python 'fuzzywuzzy' package. Compare strings by edit distance,
+    similarity ratio, best matching substring, ordered token matching and
+    set-based token matching. A range of edit distance measures are
+    available thanks to the 'stringdist' package.
 License: GPL-3
-URL: https://lewinfox.github.io/levitate/, https://github.com/lewinfox/levitate/
+URL: https://lewinfox.github.io/levitate/,
+    https://github.com/lewinfox/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
 Depends: 
     R (>= 2.10)
@@ -28,6 +32,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Encoding: UTF-8
+Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
