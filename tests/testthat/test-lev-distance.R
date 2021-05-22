@@ -279,3 +279,9 @@ test_that("useNames option is respected for vector outputs", {
   expect_named(lev_token_sort_ratio(a, b, useNames = FALSE), NULL)
   expect_named(lev_token_set_ratio(a, b, useNames = FALSE), NULL)
 })
+
+test_that("Unicode symbols are counted correctly", {
+  expect_equal(lev_ratio("ABC\u2603", "ABC\u2603"), 1)
+  expect_equal(lev_ratio("ABC\u2603", "ABC\u2604"), 0.75)
+  expect_equal(lev_ratio("AB\u2602\u2603", "AB\u2607\u2604"), 0.5)
+})
