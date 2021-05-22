@@ -1,5 +1,13 @@
 ## Resubmission
 
+Following feedback from Gregor Sayer I have:
+
+* Expanded the Description field.
+* Ensured there are no references to 'levitate', 'this package' etc. in
+  Title or Description fields.
+* Removed examples from unexported functions. This also means there are no
+  remaining instances of `\dontrun{}`.
+
 Following feedback from Uwe Ligges I have:
 
 * Single-quoted software names in Description field ('fuzzywuzzy')
