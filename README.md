@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Fuzzy string matching for R
+# levitate
 
 <!-- badges: start -->
 

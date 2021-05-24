@@ -9,7 +9,7 @@ library(levitate)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Fuzzy string matching for R
+# levitate
 
 <!-- badges: start -->
 <!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
