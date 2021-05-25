@@ -1,7 +1,7 @@
 Type: Package
 Package: levitate
 Title: Fuzzy String Comparison
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: 
     person(given = "Lewin",
            family = "Appleton-Fox",

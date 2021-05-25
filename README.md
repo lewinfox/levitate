@@ -28,7 +28,13 @@ name was available on CRAN.
 
 ## Installation
 
-Install the development version from Github:
+Install the released version from CRAN:
+
+``` r
+install.packages("levitate")
+```
+
+Alternatively, you can install the development version from Github:
 
 ``` r
 devtools::install_github("lewinfox/levitate")
