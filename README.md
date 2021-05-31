@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-<!-- [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate) -->
-
+[![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate)
 [![R-CMD-check](https://github.com/lewinfox/levitate/workflows/R-CMD-check/badge.svg)](https://github.com/lewinfox/levitate/actions)
 <!-- badges: end -->
 
