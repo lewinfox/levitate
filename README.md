@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# levitate
+# levitate <img src="inst/figures/logo.png" align="right" width=120 height=139 alt="" />
 
 <!-- badges: start -->
 
