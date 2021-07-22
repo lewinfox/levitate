@@ -9,7 +9,7 @@ library(levitate)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# levitate
+# levitate <img src="man/figures/logo.png" align="right" height="139" /></a>
 
 <!-- badges: start -->
 [![](http://cranlogs.r-pkg.org/badges/grand-total/levitate)](https://cran.r-project.org/package=levitate)
