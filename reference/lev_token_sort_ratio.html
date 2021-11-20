@@ -172,15 +172,17 @@ computed, rather than the combinations of all elements.</p></td>
     <div class='dont-index'><p><code><a href='lev_token_set_ratio.html'>lev_token_set_ratio()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"Episode IV - Star Wars: A New Hope"</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='st'>"Star Wars Episode IV - New Hope"</span>
-
-<span class='co'># Because the order of words is different the simple approach gives a low match ratio.</span>
-<span class='fu'><a href='lev_ratio.html'>lev_ratio</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.3529412</div><div class='input'>
-<span class='co'># The sorted token approach ignores word order.</span>
-<span class='fu'>lev_token_sort_ratio</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 0.9354839</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='st'>"Episode IV - Star Wars: A New Hope"</span></span>
+<span class='r-in'><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='st'>"Star Wars Episode IV - New Hope"</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Because the order of words is different the simple approach gives a low match ratio.</span></span>
+<span class='r-in'><span class='fu'><a href='lev_ratio.html'>lev_ratio</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.3529412</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># The sorted token approach ignores word order.</span></span>
+<span class='r-in'><span class='fu'>lev_token_sort_ratio</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 0.9354839</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -19,7 +19,7 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Fuzzy String Comparison">
 <meta property="og:description" content="Provides string similarity calculations inspired by the
-    Python fuzzywuzzy package. Compare strings by edit distance,
+    Python thefuzz package. Compare strings by edit distance,
     similarity ratio, best matching substring, ordered token matching and
     set-based token matching. A range of edit distance measures are
     available thanks to the stringdist package.">
@@ -89,7 +89,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><code>levitate</code> is based on the Python <a href="https://github.com/seatgeek/fuzzywuzzy">fuzzywuzzy</a> package for fuzzy string matching. An R port of this already exists, but unlike <a href="https://github.com/mlampros/fuzzywuzzyR">fuzzywuzzyR</a>, <code>levitate</code> is written entirely in R with no external dependencies on <code>reticulate</code> or Python. It also offers a couple of extra bells and whistles in the form of vectorised functions.</p>
+<p><code>levitate</code> is based on the Python <a href="https://github.com/seatgeek/thefuzz">thefuzz</a> (formerly <code>fuzzywuzzy</code>) package for fuzzy string matching. An R port of this already exists, but unlike <a href="https://github.com/mlampros/fuzzywuzzyR">fuzzywuzzyR</a>, <code>levitate</code> is written entirely in R with no external dependencies on <code>reticulate</code> or Python. It also offers a couple of extra bells and whistles in the form of vectorised functions.</p>
 <p>View the docs at <a href="https://lewinfox.github.io/levitate/" class="uri">https://lewinfox.github.io/levitate/</a>.</p>
 <div id="why-levitate" class="section level2">
 <h2 class="hasAnchor">
@@ -219,11 +219,11 @@
 <span class="co">#&gt; [1] 0.7435897</span></code></pre></div>
 </div>
 </div>
-<div id="porting-code-from-fuzzywuzzy-or-fuzzywuzzyr" class="section level2">
+<div id="porting-code-from-thefuzz-or-fuzzywuzzyr" class="section level2">
 <h2 class="hasAnchor">
-<a href="#porting-code-from-fuzzywuzzy-or-fuzzywuzzyr" class="anchor"></a>Porting code from <code>fuzzywuzzy</code> or <code>fuzzywuzzyR</code>
+<a href="#porting-code-from-thefuzz-or-fuzzywuzzyr" class="anchor"></a>Porting code from <code>thefuzz</code> or <code>fuzzywuzzyR</code>
 </h2>
-<p>Results differ between <code>levitate</code> and <code>fuzzywuzzy</code>, not least because <a href="https://github.com/markvanderloo/stringdist"><code>stringdist</code></a> offers several possible similarity measures. Be careful if you are porting code that relies on hard-coded or learned cutoffs for similarity measures.</p>
+<p>Results differ between <code>levitate</code> and <code>thefuzz</code>, not least because <a href="https://github.com/markvanderloo/stringdist"><code>stringdist</code></a> offers several possible similarity measures. Be careful if you are porting code that relies on hard-coded or learned cutoffs for similarity measures.</p>
 </div>
 </div>
   </div>
