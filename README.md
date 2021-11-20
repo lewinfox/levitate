@@ -10,12 +10,12 @@
 <!-- badges: end -->
 
 `levitate` is based on the Python
-[fuzzywuzzy](https://github.com/seatgeek/fuzzywuzzy) package for fuzzy
-string matching. An R port of this already exists, but unlike
-[fuzzywuzzyR](https://github.com/mlampros/fuzzywuzzyR), `levitate` is
-written entirely in R with no external dependencies on `reticulate` or
-Python. It also offers a couple of extra bells and whistles in the form
-of vectorised functions.
+[thefuzz](https://github.com/seatgeek/thefuzz) (formerly `fuzzywuzzy`)
+package for fuzzy string matching. An R port of this already exists, but
+unlike [fuzzywuzzyR](https://github.com/mlampros/fuzzywuzzyR),
+`levitate` is written entirely in R with no external dependencies on
+`reticulate` or Python. It also offers a couple of extra bells and
+whistles in the form of vectorised functions.
 
 View the docs at <https://lewinfox.github.io/levitate/>.
 
@@ -179,9 +179,9 @@ lev_token_set_ratio(x, y)
 #> [1] 0.7435897
 ```
 
-## Porting code from `fuzzywuzzy` or `fuzzywuzzyR`
+## Porting code from `thefuzz` or `fuzzywuzzyR`
 
-Results differ between `levitate` and `fuzzywuzzy`, not least because
+Results differ between `levitate` and `thefuzz`, not least because
 [`stringdist`](https://github.com/markvanderloo/stringdist) offers
 several possible similarity measures. Be careful if you are porting code
 that relies on hard-coded or learned cutoffs for similarity measures.

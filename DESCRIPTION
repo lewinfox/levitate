@@ -8,7 +8,7 @@ Authors@R:
            role = c("aut", "cre", "cph"),
            email = "lewin.a.f@gmail.com")
 Description: Provides string similarity calculations inspired by the
-    Python 'fuzzywuzzy' package. Compare strings by edit distance,
+    Python 'thefuzz' package. Compare strings by edit distance,
     similarity ratio, best matching substring, ordered token matching and
     set-based token matching. A range of edit distance measures are
     available thanks to the 'stringdist' package.
