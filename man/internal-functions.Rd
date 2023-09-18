@@ -28,9 +28,9 @@ single-length inputs, and the calling functions just \code{\link[=apply]{apply()
 }
 \section{Functions}{
 \itemize{
-\item \code{internal_lev_token_set_ratio}: See \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}}.
+\item \code{internal_lev_token_set_ratio()}: See \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}}.
 
-\item \code{internal_lev_partial_ratio}: See \code{\link[=lev_partial_ratio]{lev_partial_ratio()}}.
+\item \code{internal_lev_partial_ratio()}: See \code{\link[=lev_partial_ratio]{lev_partial_ratio()}}.
+
 }}
-
 \keyword{internal}

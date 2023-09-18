@@ -7,9 +7,7 @@
 lev_token_sort_ratio(a, b, pairwise = TRUE, useNames = TRUE, ...)
 }
 \arguments{
-\item{a}{The input strings}
-
-\item{b}{The input strings}
+\item{a, b}{The input strings}
 
 \item{pairwise}{Boolean. If \code{TRUE}, only the pairwise distances between \code{a} and \code{b} will be
 computed, rather than the combinations of all elements.}

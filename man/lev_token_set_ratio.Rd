@@ -7,9 +7,7 @@
 lev_token_set_ratio(a, b, pairwise = TRUE, useNames = TRUE, ...)
 }
 \arguments{
-\item{a}{The input strings}
-
-\item{b}{The input strings}
+\item{a, b}{The input strings}
 
 \item{pairwise}{Boolean. If \code{TRUE}, only the pairwise distances between \code{a} and \code{b} will be
 computed, rather than the combinations of all elements.}
@@ -28,10 +26,12 @@ Compare stings based on shared tokens.
 \section{Details}{
 
 Similar to \code{\link[=lev_token_sort_ratio]{lev_token_sort_ratio()}} this function breaks the input down into tokens. It then
-identifies any common tokens between strings and creates three new strings:\preformatted{x <- \{common_tokens\}
+identifies any common tokens between strings and creates three new strings:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{x <- \{common_tokens\}
 y <- \{common_tokens\}\{remaining_unique_tokens_from_string_a\}
 z <- \{common_tokens\}\{remaining_unique_tokens_from_string_b\}
-}
+}\if{html}{\out{</div>}}
 
 and performs three pairwise \code{\link[=lev_ratio]{lev_ratio()}} calculations between them (\code{x} vs \code{y}, \code{y} vs \code{z} and
 \code{x} vs \code{z}). The highest of those three ratios is returned.
