@@ -1,8 +1,8 @@
 #' Weighted token similarity measure
 #'
-#' Computes similarity but allows you to assign weights to specific tokens. This
-#' is useful, for example, when you have a frequently-occurring string that
-#' doesn't contain useful information. See examples.
+#' Computes similarity but allows you to assign weights to specific tokens. This is useful, for
+#' example, when you have a frequently-occurring string that doesn't contain useful information. See
+#' examples.
 #'
 #' # Details
 #'
@@ -15,9 +15,8 @@
 #' * Return `1 - (sum(weighted_edit_distances) / sum(weighted_max_edit_distance))`
 #'
 #' @inheritParams default-params
-#' @param weights List of token weights. For example,
-#'   `weights = list(foo = 0.9, bar = 0.1)`. Any tokens omitted from `weights`
-#'   will be given a weight of 1.
+#' @param weights List of token weights. For example, `weights = list(foo = 0.9, bar = 0.1)`. Any
+#'   tokens omitted from `weights` will be given a weight of 1.
 #'
 #' @return A float
 #' @export
@@ -26,7 +25,7 @@
 #' weighted_lev_ratio("jim ltd", "tim ltd")
 #'
 #' weighted_lev_ratio("tim ltd", "jim ltd", weights = list(ltd = 0.1))
-weighted_lev_ratio <- function(a, b, weights = list(), ...) {
+weighted_lev_token_ratio <- function(a, b, weights = list(), ...) {
   if (length(a) != 1 || length(b) != 1) {
     rlang::abort("`a` and `b` must be length 1")
   }
