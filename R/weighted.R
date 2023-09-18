@@ -22,9 +22,9 @@
 #' @export
 #'
 #' @examples
-#' weighted_lev_ratio("jim ltd", "tim ltd")
+#' weighted_lev_token_ratio("jim ltd", "tim ltd")
 #'
-#' weighted_lev_ratio("tim ltd", "jim ltd", weights = list(ltd = 0.1))
+#' weighted_lev_token_ratio("tim ltd", "jim ltd", weights = list(ltd = 0.1))
 weighted_lev_token_ratio <- function(a, b, weights = list(), ...) {
   if (length(a) != 1 || length(b) != 1) {
     rlang::abort("`a` and `b` must be length 1")
