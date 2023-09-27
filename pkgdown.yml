@@ -1,10 +1,10 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.19.2
+pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   levitate: levitate.html
-last_built: 2021-11-20T22:52Z
+last_built: 2023-09-27T10:01Z
 urls:
-  reference: https://lewinfox.github.io/levitate/reference
-  article: https://lewinfox.github.io/levitate/articles
+  reference: http://www.lewinfox.com/levitate/reference
+  article: http://www.lewinfox.com/levitate/articles
 
