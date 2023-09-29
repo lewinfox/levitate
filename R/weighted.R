@@ -42,10 +42,8 @@ lev_weighted_token_ratio <- function(a, b, weights = list(), ...) {
   }
 
   token_lev_distances <- mapply(lev_distance, a_tokens, b_tokens, MoreArgs = ...)
-  nchar_a <- sapply(a_tokens, nchar)
-  nchar_b <- sapply(b_tokens, nchar)
 
-  #  eights are applied where
+  #  Weights are applied where
   #
   #  * a token is in the `weights` list
   #  * AND the token appears in the same position in a and b.
@@ -67,9 +65,9 @@ lev_weighted_token_ratio <- function(a, b, weights = list(), ...) {
 
   # The similarity score is (1 - (edit_distance / max_edit_distance)), after weighting.
   weighted_edit_distances <- token_lev_distances * weights_to_apply
+  weighted_max_edit_distances <- mapply(function(a, b) max(nchar(a), nchar(b)), a_tokens, b_tokens) * weights_to_apply
 
-  # The similarity formula is `1 = (weighted_edit_distance / weighted_nchar_a + weighted_nchar_b)`
-  1 - (sum(weighted_edit_distances) / sum(nchar_a * weights_to_apply + nchar_b * weights_to_apply))
+  1 - (sum(weighted_edit_distances) / sum(weighted_max_edit_distances))
 }
 
 #' Weighted version of lev_token_sort_ratio()
