@@ -32,5 +32,5 @@ reference:
   desc: >
     Functions for comparing multiple candidates to a single string and ranking the results.
 - contents:
-  - score_multiple
-  - best_match
+  - lev_score_multiple
+  - lev_best_match
