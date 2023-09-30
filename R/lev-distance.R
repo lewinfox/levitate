@@ -291,7 +291,6 @@ NULL
 
 #' @describeIn internal-functions See [lev_token_set_ratio()].
 internal_lev_token_set_ratio <- function(a, b, pairwise = TRUE, useNames = !pairwise, ...) {
-
   token_a <- unlist(str_tokenise(a))
   token_b <- unlist(str_tokenise(b))
   common_tokens <- sort(intersect(token_a, token_b))

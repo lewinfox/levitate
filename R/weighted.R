@@ -57,7 +57,9 @@ lev_weighted_token_ratio <- function(a, b, weights = list(), ...) {
         weights[[token_b]]
       } else if (token_b == "" && token_a %in% names(weights)) {
         weights[[token_a]]
-      } else 1
+      } else {
+        1
+      }
     },
     a_tokens,
     b_tokens
