@@ -22,7 +22,7 @@ library(levitate)
 external dependencies on `reticulate` or Python. It also offers a couple of extra bells and whistles
 in the form of vectorised functions.
 
-View the docs at https://lewinfox.com/levitate/.
+View the docs at https://www.lewinfox.com/levitate/.
 
 ## Why "`levitate`"?
 A common measure of string similarity is the
