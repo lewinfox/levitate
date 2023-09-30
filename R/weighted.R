@@ -21,7 +21,7 @@
 #' @return A float
 #' @export
 #'
-#' @family weighted-token
+#' @family weighted token functions
 #'
 #' @examples
 #' lev_weighted_token_ratio("jim ltd", "tim ltd")
@@ -72,12 +72,16 @@ lev_weighted_token_ratio <- function(a, b, weights = list(), ...) {
 
 #' Weighted version of lev_token_sort_ratio()
 #'
+#' This function tokenises inputs, sorts tokens and computes similarities for each pair of tokens.
+#' Similarity scores are weighted based on the `weights` argument, and a total similarity score is
+#' returned in the same manner as [lev_weighted_token_ratio()].
 #'
 #' @inheritParams default-params
 #' @inheritParams lev_weighted_token_ratio
 #'
 #' @return Float
-#' @family weighted-token
+#' @export
+#' @family weighted token functions
 #' @seealso [lev_token_sort_ratio()]
 lev_weighted_token_sort_ratio <- function(a, b, weights = list(), ...) {
   if (length(a) != 1 || length(b) != 1) {
@@ -90,8 +94,10 @@ lev_weighted_token_sort_ratio <- function(a, b, weights = list(), ...) {
 #'
 #' @inheritParams default-params
 #' @inheritParams lev_weighted_token_ratio
-#' @family weighted-token
+#' @return Float
+#' @family weighted token functions
 #' @seealso [lev_token_set_ratio()]
+#' @export
 lev_weighted_token_set_ratio <- function(a, b, weights = list(), ...) {
   if (length(a) != 1 || length(b) != 1) {
     rlang::abort("`a` and `b` must be length 1")
