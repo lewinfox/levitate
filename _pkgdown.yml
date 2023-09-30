@@ -1,22 +1,36 @@
 url: http://www.lewinfox.com/levitate/
 reference:
 - title: String distance
-  desc: |
-    `levitate` is powered by the [`stringdist`](https://github.com/markvanderloo/stringdist) package, which offers a number of string distance measures.
+  desc: >
+    `levitate` is powered by the [`stringdist`](https://github.com/markvanderloo/stringdist)
+    package, which offers a number of string distance measures.
 - contents: lev_distance
 - title: String similarity ratio
-  desc: |
-    Similarity ratios are friendlier than distance measures when trying to rank strings by similarity.
+  desc: >
+    Similarity ratios are friendlier than distance measures when trying to rank strings by
+    similarity.
 - subtitle: Simple ratios
-  desc: |
+  desc: >
     These measures are useful for comparing individual words or other short strings.
 - contents:
   - lev_ratio
   - lev_partial_ratio
 - subtitle: Token-based ratios
-  desc: |
+  desc: >
     Splitting strings into tokens is useful when comparing the similarity of longer phrases.
 - contents:
   - lev_token_set_ratio
   - lev_token_sort_ratio
-
+- title: Weighted token functions
+  desc: >
+    Functions that allow you to modify the weight given to different tokens.
+- contents:
+  - lev_weighted_token_ratio
+  - lev_weighted_token_sort_ratio
+  - lev_weighted_token_set_ratio
+- title: Ranking functions
+  desc: >
+    Functions for comparing multiple candidates to a single string and ranking the results.
+- contents:
+  - lev_score_multiple
+  - lev_best_match
