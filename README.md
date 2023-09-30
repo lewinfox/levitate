@@ -17,7 +17,7 @@ unlike [fuzzywuzzyR](https://github.com/mlampros/fuzzywuzzyR),
 `reticulate` or Python. It also offers a couple of extra bells and
 whistles in the form of vectorised functions.
 
-View the docs at <https://lewinfox.github.io/levitate/>.
+View the docs at <https://lewinfox.com/levitate/>.
 
 ## Why “`levitate`”?
 
