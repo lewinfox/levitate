@@ -34,6 +34,9 @@
     <loc>http://www.lewinfox.com/levitate/reference/internal-functions.html</loc>
   </url>
   <url>
+    <loc>http://www.lewinfox.com/levitate/reference/lev_best_match.html</loc>
+  </url>
+  <url>
     <loc>http://www.lewinfox.com/levitate/reference/lev_distance.html</loc>
   </url>
   <url>
@@ -43,6 +46,9 @@
     <loc>http://www.lewinfox.com/levitate/reference/lev_ratio.html</loc>
   </url>
   <url>
+    <loc>http://www.lewinfox.com/levitate/reference/lev_score_multiple.html</loc>
+  </url>
+  <url>
     <loc>http://www.lewinfox.com/levitate/reference/lev_simplify_matrix.html</loc>
   </url>
   <url>
@@ -50,6 +56,15 @@
   </url>
   <url>
     <loc>http://www.lewinfox.com/levitate/reference/lev_token_sort_ratio.html</loc>
+  </url>
+  <url>
+    <loc>http://www.lewinfox.com/levitate/reference/lev_weighted_token_ratio.html</loc>
+  </url>
+  <url>
+    <loc>http://www.lewinfox.com/levitate/reference/lev_weighted_token_set_ratio.html</loc>
+  </url>
+  <url>
+    <loc>http://www.lewinfox.com/levitate/reference/lev_weighted_token_sort_ratio.html</loc>
   </url>
   <url>
     <loc>http://www.lewinfox.com/levitate/reference/str_all_substrings.html</loc>

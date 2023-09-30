@@ -19,10 +19,10 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Fuzzy String Comparison">
 <meta property="og:description" content="Provides string similarity calculations inspired by the
-    Python thefuzz package. Compare strings by edit distance,
-    similarity ratio, best matching substring, ordered token matching and
-    set-based token matching. A range of edit distance measures are
-    available thanks to the stringdist package.">
+    Python thefuzz package. Compare strings by edit distance, similarity
+    ratio, best matching substring, ordered token matching and set-based
+    token matching. A range of edit distance measures are available thanks
+    to the stringdist package.">
 <meta property="og:image" content="http://www.lewinfox.com/levitate/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">levitate</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
@@ -213,6 +213,115 @@
 <span><span class="fu"><a href="reference/lev_token_set_ratio.html">lev_token_set_ratio</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 0.7435897</span></span></code></pre></div>
 </div>
+<div class="section level3">
+<h3 id="lev_weighted_token_ratio">
+<code>lev_weighted_token_ratio()</code><a class="anchor" aria-label="anchor" href="#lev_weighted_token_ratio"></a>
+</h3>
+<p>The <code>lev_weighted_*()</code> family of functions work slightly differently from the others. They always tokenise their input, and they allow you to assign different weights to specific tokens. This allows you to exert some influence over parts of the input strings that are more or less interesting to you.</p>
+<p>For example, maybe you’re comparing company names from different sources, trying to match them up.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_ratio.html">lev_ratio</a></span><span class="op">(</span><span class="st">"united widgets, ltd"</span>, <span class="st">"utd widgets, ltd"</span><span class="op">)</span> <span class="co"># Note the typos</span></span>
+<span><span class="co">#&gt; [1] 0.8421053</span></span></code></pre></div>
+<p>These strings score quite highly already, but the <code>"ltd"</code> in each name isn’t very helpful. We can use <code><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio()</a></code> to reduce the impact of <code>"ltd"</code>.</p>
+<p><strong>NOTE</strong> Because the tokenisation affects the score, we can’t compare the output of the <code>lev_weighted_*()</code> functions with the non-weighted versions. To get a baseline, call the weighted function without supplying a <code>weights</code> argument.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"united widgets, ltd"</span>, <span class="st">"utd widgets, ltd"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.8125</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"united widgets, ltd"</span>, <span class="st">"utd widgets, ltd"</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ltd <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.7744361</span></span></code></pre></div>
+<p>De-weighting <code>"ltd"</code> has reduced the similarity score of the strings, which gives a more accurate impression of their similarity.</p>
+<p>We can remove the effect of <code>"ltd"</code> altogether by setting its weight to zero.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"united widgets, ltd"</span>, <span class="st">"utd widgets, ltd"</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ltd <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.7692308</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"united widgets"</span>, <span class="st">"utd widgets"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.7692308</span></span></code></pre></div>
+<p>De-weighting also works the other way - if the token to be weighted appears in one string but not the other, then de-weighting it <em>increases</em> the similarity score:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"utd widgets"</span>, <span class="st">"united widgets, ltd"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.625</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"utd widgets"</span>, <span class="st">"united widgets, ltd"</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ltd <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.7518797</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="limitations-of-token-weighting">Limitations of token weighting<a class="anchor" aria-label="anchor" href="#limitations-of-token-weighting"></a>
+</h4>
+<p><code><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio()</a></code> has a key limitation: tokens will only be weighted if:</p>
+<ul>
+<li>The token appears in the same position in both strings (i.e. it’s the first/second/third, etc. token in both)</li>
+<li>OR the strings contain different numbers of tokens, and the corresponding token position in the other string is empty.</li>
+</ul>
+<p>This is probably easiest to see by example.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"utd widgets limited"</span>, <span class="st">"united widgets, ltd"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.65</span></span>
+<span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"utd widgets limited"</span>, <span class="st">"united widgets, ltd"</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ltd <span class="op">=</span> <span class="fl">0.1</span>, limited <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.65</span></span></code></pre></div>
+<p>In this case the weighting has had no effect. Why not? Internally, the function has tokenised the strings as follows:</p>
+<table class="table">
+<thead><tr class="header">
+<th>token_1</th>
+<th>token_2</th>
+<th>token_3</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>“utd”</td>
+<td>“widgets”</td>
+<td>“limited”</td>
+</tr>
+<tr class="even">
+<td>“united”</td>
+<td>“widgets”</td>
+<td>“ltd”</td>
+</tr>
+</tbody>
+</table>
+<p>Because the token <code>"ltd"</code> doesn’t appear in the same position in both strings, the function doesn’t apply any weights.</p>
+<p>This is a deliberate decision; while in the example above it’s easy to say “well, clearly ltd and limited are the same thing so we ought to weight them”, how should we handle a less clear example?</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"green eggs and ham"</span>, <span class="st">"spam spam spam spam"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.1176471</span></span>
+<span><span class="fu"><a href="reference/lev_weighted_token_ratio.html">lev_weighted_token_ratio</a></span><span class="op">(</span><span class="st">"green eggs and ham"</span>, <span class="st">"spam spam spam spam"</span>, weights <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>spam <span class="op">=</span> <span class="fl">0.1</span>, eggs <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 0.1176471</span></span></code></pre></div>
+<p>In this case it’s hard to say what the “correct” approach would be. There isn’t a meaningful way of applying weights to dissimilar tokens. In situations like “ltd”/“limited”, a pre-cleaning or standardisation process might be helpful, but that is outside the scope of what <code>levitate</code> offers.</p>
+<p>I recommend exploring <code><a href="reference/lev_weighted_token_sort_ratio.html">lev_weighted_token_sort_ratio()</a></code> and <code><a href="reference/lev_weighted_token_set_ratio.html">lev_weighted_token_set_ratio()</a></code> as they may give more useful results for some problems. Remember, <strong>weighting is going to be most useful when compared to the unweighted output of the same function</strong>.</p>
+</div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="ranking-functions">Ranking functions<a class="anchor" aria-label="anchor" href="#ranking-functions"></a>
+</h2>
+<p>A common problem in this area is “given a string x and a set of strings y, which string in y is most / least similar to x?”. <code>levitate</code> provides two functions to help with this: <code><a href="reference/lev_score_multiple.html">lev_score_multiple()</a></code> and <code><a href="reference/lev_best_match.html">lev_best_match()</a></code>.</p>
+<p><code><a href="reference/lev_score_multiple.html">lev_score_multiple()</a></code> returns a ranked list of candidates. By default the highest-scoring is first.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_score_multiple.html">lev_score_multiple</a></span><span class="op">(</span><span class="st">"bilbo"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gandalf"</span>, <span class="st">"frodo"</span>, <span class="st">"legolas"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $frodo</span></span>
+<span><span class="co">#&gt; [1] 0.2</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $legolas</span></span>
+<span><span class="co">#&gt; [1] 0.1428571</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $gandalf</span></span>
+<span><span class="co">#&gt; [1] 0</span></span></code></pre></div>
+<p><code><a href="reference/lev_best_match.html">lev_best_match()</a></code> returns the best matched string without any score information.</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_best_match.html">lev_best_match</a></span><span class="op">(</span><span class="st">"bilbo"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gandalf"</span>, <span class="st">"frodo"</span>, <span class="st">"legolas"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "frodo"</span></span></code></pre></div>
+<p>Both functions take a <code>.fn</code> argument which allows you to select a different ranking function. The default is <code><a href="reference/lev_ratio.html">lev_ratio()</a></code> but you can pick another or write your own. See <code><a href="reference/lev_score_multiple.html">?lev_score_multiple</a></code> for details.</p>
+<p>You can also reverse the direction of sorting by using <code>decreasing = FALSE</code>. This reverses the sort direction so <em>lower</em> scoring items are preferred. This may be helpful if you’re using a distance rather than a similarity measure, or if you want to return least similar strings.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/lev_score_multiple.html">lev_score_multiple</a></span><span class="op">(</span><span class="st">"bilbo"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gandalf"</span>, <span class="st">"frodo"</span>, <span class="st">"legolas"</span><span class="op">)</span>, decreasing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $gandalf</span></span>
+<span><span class="co">#&gt; [1] 0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $legolas</span></span>
+<span><span class="co">#&gt; [1] 0.1428571</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $frodo</span></span>
+<span><span class="co">#&gt; [1] 0.2</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="porting-code-from-thefuzz-or-fuzzywuzzyr">Porting code from <code>thefuzz</code> or <code>fuzzywuzzyR</code>
