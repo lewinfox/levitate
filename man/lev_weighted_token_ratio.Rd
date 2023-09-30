@@ -40,8 +40,8 @@ lev_weighted_token_ratio("jim ltd", "tim ltd")
 lev_weighted_token_ratio("tim ltd", "jim ltd", weights = list(ltd = 0.1))
 }
 \seealso{
-Other weighted-token: 
+Other weighted token functions: 
 \code{\link{lev_weighted_token_set_ratio}()},
 \code{\link{lev_weighted_token_sort_ratio}()}
 }
-\concept{weighted-token}
+\concept{weighted token functions}

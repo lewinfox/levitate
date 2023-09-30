@@ -15,14 +15,17 @@ tokens omitted from \code{weights} will be given a weight of 1.}
 \item{...}{Additional arguments to be passed to \code{\link[stringdist:stringdist]{stringdist::stringdistmatrix()}} or
 \code{\link[stringdist:stringsim]{stringdist::stringsimmatrix()}}.}
 }
+\value{
+Float
+}
 \description{
 Weighted version of \code{lev_token_set_ratio()}
 }
 \seealso{
 \code{\link[=lev_token_set_ratio]{lev_token_set_ratio()}}
 
-Other weighted-token: 
+Other weighted token functions: 
 \code{\link{lev_weighted_token_ratio}()},
 \code{\link{lev_weighted_token_sort_ratio}()}
 }
-\concept{weighted-token}
+\concept{weighted token functions}

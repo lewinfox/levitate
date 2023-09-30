@@ -19,13 +19,15 @@ tokens omitted from \code{weights} will be given a weight of 1.}
 Float
 }
 \description{
-Weighted version of lev_token_sort_ratio()
+This function tokenises inputs, sorts tokens and computes similarities for each pair of tokens.
+Similarity scores are weighted based on the \code{weights} argument, and a total similarity score is
+returned in the same manner as \code{\link[=lev_weighted_token_ratio]{lev_weighted_token_ratio()}}.
 }
 \seealso{
 \code{\link[=lev_token_sort_ratio]{lev_token_sort_ratio()}}
 
-Other weighted-token: 
+Other weighted token functions: 
 \code{\link{lev_weighted_token_ratio}()},
 \code{\link{lev_weighted_token_set_ratio}()}
 }
-\concept{weighted-token}
+\concept{weighted token functions}
