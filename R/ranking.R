@@ -11,7 +11,8 @@
 #'   If using a comparison `.fn` that computes _distance_ rather than similarity, or if you want the
 #'   worst match to be returned first, set this to `FALSE`.
 #'
-#' @return A list where the keys are `candidates` and the values are the scores.
+#' @return A list where the keys are `candidates` and the values are the scores. The list is sorted
+#'   according to the `decreasing` parameter, so by default higher scores are first.
 #'
 #' @examples
 #' score_multiple("bilbo", c("frodo", "gandalf", "legolas"))

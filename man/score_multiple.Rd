@@ -21,7 +21,8 @@ If using a comparison \code{.fn} that computes \emph{distance} rather than simil
 worst match to be returned first, set this to \code{FALSE}.}
 }
 \value{
-A list where the keys are \code{candidates} and the values are the scores.
+A list where the keys are \code{candidates} and the values are the scores. The list is sorted
+according to the \code{decreasing} parameter, so by default higher scores are first.
 }
 \description{
 Given a single \code{input} string and multiple \code{candidates}, compute scores for each candidate.
