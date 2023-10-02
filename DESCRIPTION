@@ -23,6 +23,7 @@ Suggests:
     knitr,
     pkgdown,
     rmarkdown,
+    stringi,
     styler,
     testthat
 VignetteBuilder: 
