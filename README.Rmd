@@ -29,6 +29,19 @@ A common measure of string similarity is the
 [**Lev**enshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance), and the name was
 available on CRAN.
 
+**NOTE** The default distance metric is Optimal String Alignment (OSA), not Levenshtein distance.
+This is the default method used by the `stringdist` package, which `levitate` uses for distance
+calculations. OSA allows transpositions whereas Levenshtein distance does not. To use Levenshtein
+distance pass `method = "lv"` to any `lev_*()` functions.
+
+``` {r transpositions}
+lev_distance("01", "10") # Transpositions allowed by the default `method = "osa"`
+
+lev_distance("01", "10", method = "lv") # No transpositions
+```
+
+A full list of distance metrics is available in `help("stringdist-metrics", package = stringdist)`.
+
 ## Installation
 
 Install the released version from CRAN:
@@ -46,6 +59,7 @@ devtools::install_github("lewinfox/levitate")
 ## Examples
 
 ### `lev_distance()`
+
 The edit distance is the number of additions, subtractions or substitutions needed to transform one
 string into another. Base R provides the `adist()` function to compute this. `levitate` provides
 `lev_distance()` which is powered by the
@@ -78,6 +92,7 @@ lev_distance("cat", c("rat", "log", "frog", "other"), useNames = FALSE)
 ```
 
 ### `lev_ratio()`
+
 More useful than the edit distance, `lev_ratio()` makes it easier to compare similarity across
 different strings. Identical strings will get a score of 1 and entirely dissimilar strings will get
 a score of 0.
@@ -95,6 +110,7 @@ lev_ratio(c("cat", "dog", "clog"), c("rat", "log", "frog"))
 ```
 
 ### `lev_partial_ratio()`
+
 If `a` and `b` are different lengths, this function compares all the substrings of the longer string
 that are the same length as the shorter string and returns the highest `lev_ratio()` of all of them.
 E.g. when comparing `"actor"` and `"tractor"` we would compare `"actor"` with `"tract"`, `"racto"`
@@ -108,6 +124,7 @@ lev_ratio("actor", c("tract", "racto", "actor"))
 ```
 
 ### `lev_token_sort_ratio()`
+
 The inputs are tokenised and the tokens are sorted alphabetically, then the resulting strings are
 compared.
 ```{r}
@@ -122,6 +139,7 @@ lev_token_sort_ratio(x, y)
 ```
 
 ### `lev_token_set_ratio()`
+
 Similar to `lev_token_sort_ratio()` this function breaks the input down into tokens. It then 
 identifies any common tokens between strings and creates three new strings:
 
