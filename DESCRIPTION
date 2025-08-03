@@ -1,8 +1,8 @@
 Type: Package
 Package: levitate
 Title: Fuzzy String Comparison
-Version: 0.2.0
-Authors@R: 
+Version: 0.2.1
+Authors@R:
     person("Lewin", "Appleton-Fox", , "lewin.a.f@gmail.com", role = c("aut", "cre", "cph"))
 Description: Provides string similarity calculations inspired by the
     Python 'thefuzz' package. Compare strings by edit distance, similarity
@@ -13,23 +13,22 @@ License: GPL-3
 URL: https://github.com/lewinfox/levitate/,
     https://www.lewinfox.com/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
-Depends: 
+Depends:
     R (>= 2.10)
-Imports: 
+Imports:
     rlang,
     stringdist
-Suggests: 
+Suggests:
     glue,
     knitr,
     pkgdown,
     rmarkdown,
     stringi,
-    styler,
     testthat
-VignetteBuilder: 
+VignetteBuilder:
     knitr
 Encoding: UTF-8
 Language: en-GB
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
