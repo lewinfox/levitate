@@ -10,7 +10,7 @@ Description: Provides string similarity calculations inspired by the
     token matching. A range of edit distance measures are available thanks
     to the 'stringdist' package.
 License: GPL-3
-URL: https://www.lewinfox.com/levitate/
+URL: https://lewinfox.com/levitate/
 BugReports: https://github.com/lewinfox/levitate/issues
 Depends:
     R (>= 2.10)
