@@ -1,7 +1,7 @@
 Type: Package
 Package: levitate
 Title: Fuzzy String Comparison
-Version: 0.2.1
+Version: 0.2.2
 Authors@R:
     person("Lewin", "Appleton-Fox", , "lewin.a.f@gmail.com", role = c("aut", "cre", "cph"))
 Description: Provides string similarity calculations inspired by the
